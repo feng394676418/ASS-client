@@ -1,0 +1,146 @@
+@media (min-width: 1200px) {
+	
+}
+@media (min-width: 980px) {
+	
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+   .home_work_order {margin:10px;}
+   .steps{ margin-left:10px;}
+   .order_detection{ margin:5px 10px;} 
+   .mr_left{margin-left: 0;}
+   .parts_count .form-control{width:100%;}
+   .settlement_select .form-control{width: 100%;margin-bottom: 10px;}
+   .settlement_select .dk_toggle{width: 100%!important;}
+   .new_user .form-control{margin-bottom: 10px;}
+   .new_user .btn{margin-left: 0;}
+   .logo{top: 0px;right:10px}
+   .side-menu-content2{padding: 10px;}
+   	#float {
+		position: relative!important;
+		float: none;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: auto;
+	}
+    .spare_right{width: 100%; float: none;margin-top: 10px;}
+    .el-pagination{float: left}
+}
+
+@media (max-width: 768px) {    
+   .home_work_order {margin:10px;}
+   .steps{ margin-left:10px;}
+   .order_detection{ margin:5px 10px;} 
+   .mr_left{margin-left: 0;}
+   .page-content .sm-page{padding: 0 5px;font-size: 16px;}   
+   .order_list_top .form-control{margin:15px 2px 0}
+   .order_list_top .btn-primary{margin-left:0px ; margin-top: 15px;}   
+   .order_list_top .btn-warning{margin-left:0px ; margin-top: 15px;}   
+   .spares_search{height: 138px;}
+   .modal-body .adress .form-control{width: 100%;margin-bottom: 10px; margin-right: 10px;}
+   .modal-body .owner .form-control{width: 100%;margin-bottom: 10px; margin-right: 10px;}
+   .modal-body .adress .dk_toggle{width: 100%!important;}
+   .modal-body .owner .dk_toggle{width: 100%!important;}
+   .modal-body .adress .clear-padding-right{padding-right: 15px!important;}
+   .modal-body .owner .clear-padding-right{padding-right: 15px!important;}      
+   .parts_count .form-control{width:100%;}
+   .settlement_select .form-control{width: 100%;margin-bottom: 10px;}
+   .settlement_select .dk_toggle{width: 100%!important;}
+   .new_user .form-control{margin-bottom: 10px;}
+   .new_user .btn{margin-left: 0;}
+   .logo{top: 0px;right:10px}
+   .side-menu-content2{padding: 10px;}
+   	#float {
+		position: relative!important;
+		float: none;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: auto;
+	}
+	.spare_right{width: 100%; float: none;margin-top: 10px;}
+    .user_pd{padding-left: 0px;}
+    .el-pagination{float: left}
+	
+}
+
+@media (max-width: 480px) {
+	.home_work_order{margin:10px;}  
+	.steps{ margin-left:10px;} 
+	.order_detection{margin:5px 10px;}
+	.mr_left{margin-left: 0;}
+	.btn-default{padding:5px 10px!important ;}	  
+    .btn-default{width: 70px; }
+    .page-content .sm-page{padding: 0 5px;font-size: 16px; height: 160px;}
+    .order_list_top .form-control{margin:15px 2px 0}
+    .order_list_top .btn-primary{margin-left:0px ;}
+    .order_list_top .btn-warning{margin-left:0px ; margin-top: 15px;}   
+    .spares_search{height: 138px;}
+   .modal-body .adress .form-control{width: 100%;margin-bottom: 10px; margin-right: 10px;}   
+   .modal-body .owner .form-control{width: 100%;margin-bottom: 10px; margin-right: 10px;}   
+   .modal-body .owner .dk_toggle{width: 100%!important;}
+   .modal-body .adress .dk_toggle{width: 100%!important;}
+   .modal-body .adress .clear-padding-right{padding-right: 15px!important;}
+   .modal-body .owner .clear-padding-right{padding-right: 15px!important;}
+   .upload_con .grey_remark{margin-top: 10px;}    
+   .parts_count .form-control{width:100%;}
+   .settlement_select .form-control{width: 100%;margin-bottom: 10px;}
+   .settlement_select .dk_toggle{width: 100%!important;}
+   .new_user .form-control{margin-bottom: 10px;}
+   .new_user .btn{margin-left: 0;}
+   .logo{top: 0px;right:10px}
+   .side-menu-content2{padding: 10px;}
+   	#float {
+		position: relative!important;
+		float: none;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: auto;
+	}
+	.spare_right{width: 100%; float: none;margin-top: 10px;}
+    .user_pd{padding-left: 0px;}
+    .el-pagination{float: left}
+}
+
+@media (max-width:320px) {
+	.home_work_order{margin:10px;}
+	.steps{ margin-left:10px;}
+	.order_detection{margin:5px 10px;}
+	.mr_left{margin-left: 0;}
+	.btn-default{padding:5px 10px!important ;}	  
+    .btn-default{width: 70px; }
+    .order_list_top .form-control{margin:15px 2px 0}
+    .page-content .sm-page{padding: 0 5px;font-size: 16px;height: 200px;}
+    .order_list_top .form-control{margin:15px 2px 0}	
+    .order_list_top .btn-primary{margin-left:0px ;}
+    .order_list_top .btn-warning{margin-left:0px ; margin-top: 15px;}   
+    .spares_search{height: 138px;}
+   .modal-body .adress .form-control{width: 100%;margin-bottom: 10px; margin-right: 10px;}
+   .modal-body .owner .form-control{width: 100%;margin-bottom: 10px; margin-right: 10px;}
+   .modal-body .adress .dk_toggle{width: 100%!important;}
+   .modal-body .owner .dk_toggle{width: 100%!important;}
+   .modal-body .adress .clear-padding-right{padding-right: 15px!important;}
+   .modal-body .owner .clear-padding-right{padding-right: 15px!important;}
+   .upload_con .grey_remark{margin-top: 10px;}    
+   .parts_count .form-control{width:100%;}
+   .settlement_select .form-control{width: 100%;margin-bottom: 10px;}
+   .settlement_select .dk_toggle{width: 100%!important;}
+   .new_user .form-control{margin-bottom: 10px;}
+   .new_user .btn{margin-left: 0;}
+   .logo{top: 0px;right:10px}
+   .side-menu-content2{padding: 10px;}
+   	#float {
+		position: relative!important;
+		float: none;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: auto;
+	}
+	.spare_right{width: 100%; float: none; margin-top: 10px;}
+    .user_pd{padding-left: 0px;}
+    .el-pagination{float: left}
+}

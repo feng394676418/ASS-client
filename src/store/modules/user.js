@@ -18,7 +18,7 @@ const user = {
         setting: {
             articlePlatform: []
         },
-        providerCode: '', // 组织,服务商CODE
+        providerCode: 'C00001', // 组织,服务商CODE
         owner: '', // 弃用
         authorize_code: '' // 授权码
     },

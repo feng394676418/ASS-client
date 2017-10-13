@@ -178,9 +178,9 @@
                   <el-select v-model="part.owner" placeholder="" class="select_list form-control">
                     <el-option
                       v-for="item in owners"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
+                      :key="item"
+                      :label="item"
+                      :value="item">
                     </el-option>
                   </el-select>
                 </div>
@@ -274,6 +274,7 @@
   import Vue from 'vue';
   import { getPartList,addPart,getPartById,updatePart,invalidPart,validPart,countPart,getPartExcelUrl } from 'api/partManage';
   import Cookies from 'js-cookie';
+  import { getOwnerOutterCodeList } from 'api/providerMgr';
   
   export default {
   components: {rightButtonChild },
@@ -315,10 +316,7 @@
       tempPart : '',
       partDialog : false,
       isEdit : false,
-      owners: [{
-          value: 'TTL2015SZ',
-          label: '一加'
-        }],
+      owners : [],
       partIds : [],
       partExcelUrl: ''
     }
@@ -344,6 +342,7 @@
         _this.$on('verifyPartForm', function() {
           _this.handSavePart();
         });
+        this.getOwners();
   },
   filters: {
     statusFilter(status) {
@@ -559,6 +558,11 @@
     },
     cancelPartModel(){
       $('#partModal').modal('hide');
+    },
+    getOwners() {
+        getOwnerOutterCodeList(this.$store.getters.providerCode).then(response => {
+            this.owners = response.data;
+        })
     }
 
   }

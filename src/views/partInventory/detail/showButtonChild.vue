@@ -5,7 +5,7 @@
       <dt :class="logInfo.className"><a>{{logInfo.logStatus | logStatusName}}</a></dt>
       <dd>
         <p><img alt="" class="img-circle" :src="logInfo.imageSrc"><strong>{{logInfo.userName}}</strong></p>
-        <p class="description">{{logInfo.providerName}}</p>
+        <p class="description">{{logInfo.organization}}</p>
         <p><i class="icon_data"></i>{{logInfo.createDate}}</p>
       </dd>
     </dl>

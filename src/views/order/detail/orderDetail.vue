@@ -545,7 +545,7 @@
 	            					{{$t('order.Detail.AWBNo')}}:<span>{{baseInfo.sendTrackingNo}}</span>
 	            			</div>
 	            			<div class="col-md-6  col-sm-12 col-xs-12">
-	            					 {{$t('order.Detail.RecipientAddress')}}:<span>{{baseInfo.sendAddressNew}}</span>
+	            					 {{$t('order.Detail.RecipientAddress')}}:<span>{{baseInfo.userAddress}}</span>
 	            			</div>
 	            		</div>
 	            		

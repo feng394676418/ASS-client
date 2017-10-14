@@ -426,39 +426,41 @@
             }, this);
         },
     handleExpOrder(){
-
         let expList;
         if(this.orders.length>0){
           expList = this.orders;
+           this.expOrder(expList);
         }else{
           expOrder(this.listQuery).then(response => {
               expList = response.data;
-                  expList.map(obj => this.statusItems.map(function (item) {
-                      if(item.status == obj.status){
-                        obj.statusName =  item.name;
-                      }
-    　　　       }));
+               this.expOrder(expList);
           })
         }
-        require.ensure([], () => {
-                const { export_json_to_excel } = require('vendor/Export2Excel');
-                var tHeader;
-                var filterVal;
+    },
+    expOrder(expList){
+      expList.map(obj => this.statusItems.map(function (item) {
+        if(item.status == obj.status){
+          obj.statusName =  item.name;
+        }
+      }));
+      require.ensure([], () => {
+        const { export_json_to_excel } = require('vendor/Export2Excel');
+        var tHeader;
+        var filterVal;
 
-                if(this.providerType=='B'){
-                    tHeader = [this.$t('order.refNumber'), this.$t('order.userName'),this.$t('order.trackingNo'),this.$t('order.productType'),
-                    this.$t('order.imei'), this.$t('order.facilitatorName'), this.$t('order.status'), this.$t('order.createDate')];
-                    filterVal = ['refNumber', 'userName','trackingNo','productType','imei','facilitatorName','statusName','createDate'];
-                }
-                 if(this.providerType=='C'){
-                    tHeader = [this.$t('order.refNumber'), this.$t('order.userName'),this.$t('order.trackingNo'),this.$t('order.productType'),
-                    this.$t('order.imei'), this.$t('order.owner'), this.$t('order.status'), this.$t('order.createDate')];
-                    filterVal = ['refNumber', 'userName','trackingNo','productType','imei','owner','statusName','createDate'];
-                }
-                const data = this.formatJson(filterVal, expList);
-                export_json_to_excel(tHeader, data, this.$t('order.orderList')+parseTime(new Date()));
-              })
-        
+        if(this.providerType=='B'){
+            tHeader = [this.$t('order.refNumber'), this.$t('order.userName'),this.$t('order.trackingNo'),this.$t('order.productType'),
+            this.$t('order.imei'), this.$t('order.facilitatorName'), this.$t('order.status'), this.$t('order.createDate')];
+            filterVal = ['refNumber', 'userName','trackingNo','productType','imei','facilitatorName','statusName','createDate'];
+        }
+          if(this.providerType=='C'){
+            tHeader = [this.$t('order.refNumber'), this.$t('order.userName'),this.$t('order.trackingNo'),this.$t('order.productType'),
+            this.$t('order.imei'), this.$t('order.owner'), this.$t('order.status'), this.$t('order.createDate')];
+            filterVal = ['refNumber', 'userName','trackingNo','productType','imei','owner','statusName','createDate'];
+        }
+        const data = this.formatJson(filterVal, expList);
+        export_json_to_excel(tHeader, data, this.$t('order.orderList')+parseTime(new Date()));
+      })
     },
     formatJson(filterVal, jsonData) {
       return jsonData.map(v => filterVal.map(j => v[j]))

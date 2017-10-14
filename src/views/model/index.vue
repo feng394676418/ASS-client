@@ -201,7 +201,7 @@
     }
   },
   methods: {
-    getOwner(){
+    getOwner() {
       this.listLoading = true;
       queryOwner().then(response => {
         this.phonemodel.owner = response.data;

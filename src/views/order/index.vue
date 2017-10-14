@@ -83,22 +83,12 @@
                   >
                   </el-date-picker>
 
-                  <el-select v-model="listQuery.facilitator" v-if="providerType == 'B'" :placeholder="$t('order.serviceprovider')" @change="handlesearchByProviderCode" size="small">
+                  <el-select clearable v-model="listQuery.facilitator" :placeholder="$t('order.selectowner')" @change="handlesearchByOwnerCode" size="small">
                     <el-option
-                      v-for="item in providerOptions"
-                      :key="item.providerCode"
-                      :label="item.providerName"
-                      :value="item.providerCode"
-                      >
-                    </el-option>
-                  </el-select>
-
-                  <el-select v-model="listQuery.facilitator" v-if="providerType == 'C'" :placeholder="$t('order.selectowner')" @change="handlesearchByProviderCode" size="small">
-                    <el-option
-                      v-for="item in providerOptions"
-                      :key="item.providerCode"
-                      :label="item.providerName"
-                      :value="item.providerCode"
+                      v-for="item in ownerOptions"
+                      :key="item.owner"
+                      :label="item.owner"
+                      :value="item.owner"
                       >
                     </el-option>
                   </el-select>
@@ -225,14 +215,14 @@
             sortName: 'createDate',
             sortOrder: 'desc',
             orderNumber: '',
-            searchProviderCode: ''
+            searchOwnerCode: ''
       },
       statusItems: this.$t('order.statusItems'),
       orders : [],
       statusArr : [],
       tempOrder : '',
       isEdit : false,
-      providerOptions: [],
+      ownerOptions: [],
       orderModalTitle : '',
       providerAddress : '',
       providerPhone : '',
@@ -341,8 +331,8 @@
       }
       this.getList();
     },
-    handlesearchByProviderCode(val) {
-          this.listQuery.searchProviderCode = val;
+    handlesearchByOwnerCode(val) {
+          this.listQuery.searchOwnerCode = val;
           this.getList();
     },
     handleViewOrder(val) {
@@ -414,9 +404,10 @@
         },
     getOwnerList() {
              getOwnerList(this.$store.getters.providerCode).then(response => {
-                this.providerOptions = response.data;
+                this.ownerOptions = response.data;
             })
         },
+<<<<<<< HEAD
     handleChangeProvider(val){
             this.providerOptions.forEach(function(obj) {
                 if(obj.providerCode == val){
@@ -434,10 +425,22 @@
           expOrder(this.listQuery).then(response => {
               expList = response.data;
                this.expOrder(expList);
+=======
+    handleExpOrder() {
+        let expList;
+        if(this.orders.length>0){
+          expList = this.orders;
+          this.expOrder(expList); 
+        }else{
+          expOrder(this.listQuery).then(response => {
+              expList = response.data;
+              this.expOrder(expList);
+>>>>>>> a5186e7f83ffa10716479f5cb106742a8411b9f2
           })
         }
     },
     expOrder(expList){
+<<<<<<< HEAD
       expList.map(obj => this.statusItems.map(function (item) {
         if(item.status == obj.status){
           obj.statusName =  item.name;
@@ -461,7 +464,23 @@
         const data = this.formatJson(filterVal, expList);
         export_json_to_excel(tHeader, data, this.$t('order.orderList')+parseTime(new Date()));
       })
+=======
+          expList.map(obj => this.statusItems.map(function (item) {
+                      if(item.status == obj.status){
+                        obj.statusName =  item.name;
+                      }
+    　　　       }));
+          require.ensure([], () => {
+                const { export_json_to_excel } = require('vendor/Export2Excel');
+                const tHeader = [this.$t('order.refNumber'), this.$t('order.userName'),this.$t('order.trackingNo'),this.$t('order.productType'),
+                    this.$t('order.imei'), this.$t('order.owner'), this.$t('order.status'), this.$t('order.createDate')];
+                const filterVal = ['refNumber', 'userName','trackingNo','productType','imei','owner','statusName','createDate'];
+                const data = this.formatJson(filterVal, expList);
+                export_json_to_excel(tHeader, data, this.$t('order.orderList')+parseTime(new Date()));
+        })
+>>>>>>> a5186e7f83ffa10716479f5cb106742a8411b9f2
     },
+
     formatJson(filterVal, jsonData) {
       return jsonData.map(v => filterVal.map(j => v[j]))
     }

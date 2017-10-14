@@ -6,7 +6,7 @@ import fetch from 'utils/fetch';
 export function getModelList(query) {
     return fetch({
         url: 'api/modelClient/queryModelList',
-        method: 'post',
+        method: 'get',
         params: query
     });
 }
@@ -57,5 +57,3 @@ export function modelInvalid(param) {
         data: param
     });
 }
-
-

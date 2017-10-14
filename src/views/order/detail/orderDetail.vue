@@ -363,9 +363,9 @@
 
 										<!--编辑工单 按钮显示-->
 										<!--一加厂商权限-->
-										<template v-if="providerCode.substr(0,1) === 'B' && ( logInfoStatus === 11 || logInfoStatus === 1 )">
+										<!-- <template v-if="providerCode.substr(0,1) === 'B' && ( logInfoStatus === 11 || logInfoStatus === 1 )">
 											<editOrderButtonChild :baseInfo="baseInfo" v-on:listenBaseInfo="refreshBaseInfo"></editOrderButtonChild>
-										</template>
+										</template> -->
 
                     <!--受理 子组件 维修显示--> 
                     <!--角色权限追加 判断条件status role authorization-->
@@ -379,9 +379,9 @@
                      </template>
 
                     <!--确认报价 子组件 货主显示-->
-                    <template v-if="providerCode.substr(0,1) === 'B' && logInfoStatus === 13">
+                    <!-- <template v-if="providerCode.substr(0,1) === 'B' && logInfoStatus === 13">
                       <confirmingButtonChild v-on:listenBaseInfo="refreshBaseInfo"></confirmingButtonChild>
-                    </template>
+                    </template> -->
                     <!--维修 子组件 服务商显示-->
 									  <template v-if="providerCode.substr(0,1) === 'C' && ( logInfoStatus === 14 || ( logInfoStatus === 16 && logInfoRemark === 'reject' ) )">
 											<maintenanceButtonChild :baseInfo="baseInfo" v-on:listenBaseInfo="refreshBaseInfo"></maintenanceButtonChild>

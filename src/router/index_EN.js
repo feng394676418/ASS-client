@@ -80,7 +80,7 @@ const orderDetail = _import('order/detail/orderDetail');
 
 const inventory_apply = _import('partInventory/inventory_apply');
 const inventory_apply_details = _import('partInventory/detail/Inventory_apply_details');
-//const inventory_bad_back = _import('partInventory/inventory_bad_back');
+// const inventory_bad_back = _import('partInventory/inventory_bad_back');
 // const bootstrapT = _import('order/detail/bootstrapT');
 
 Vue.use(Router);
@@ -157,8 +157,8 @@ export const asyncRouterMap_EN = [{
             { path: 'provider/stockOrderDetail/:stockOrderNumber', component: providerStockOrderDetail, hidden: true, name: 'warehouse details' },
             { path: 'provider/change/index/:sku/:owner/:providerCode/:inventoryType/:inventoryTypeName', hidden: true, component: providerPartInventoryChange, name: 'Inventory water' },
             { path: 'inventory_apply', component: inventory_apply, name: 'Apply parts', meta: { role: ['engineer'] } },
-            { path: 'detail/:stockOrderNumber', component: inventory_apply_details, hidden: true, name: 'Apply parts', meta: { role: ['engineer'] } },
-            //{ path: 'badback', component: inventory_bad_back, name: 'Bad pieces', meta: { role: ['engineer'] } }
+            { path: 'detail/:stockOrderNumber', component: inventory_apply_details, hidden: true, name: 'Apply parts', meta: { role: ['engineer'] } }
+            // { path: 'badback', component: inventory_bad_back, name: 'Bad pieces', meta: { role: ['engineer'] } }
         ]
 
     },
@@ -170,8 +170,8 @@ export const asyncRouterMap_EN = [{
         icon: 'set',
         children: [
             { path: 'index', component: PartIndex, name: 'Spare parts' },
-            { path: 'warehouseIndex', component: warehouse_index, name: 'Warehouse' },
-            { path: 'model_index', component: ModelInfoIndex, name: 'Model' }
+            { path: 'warehouseIndex', component: warehouse_index, name: 'Warehouse' }
+            // { path: 'model_index', component: ModelInfoIndex, name: 'Model' } 三期启用
             // { path: 'index', component: PartIndex, name: '备件库存 ' },
             // { path: 'tinymce', component: Tinymce, name: '备件库存' },
             // { path: 'markdown', component: Markdown, name: '备件出入库单' }

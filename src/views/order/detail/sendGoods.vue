@@ -32,7 +32,7 @@
 	              </div>
               </div>
               <div class="form-group col-md-2">
-                <label for="">{{$t('order.address')}}<b>*</b>:</label>
+                <label for="">{{$t('order.address')}}<b>*</b></label>
                 <p>{{baseInfo.providerAddress}}</p>
               </div>
           </form></div>

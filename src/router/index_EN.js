@@ -27,6 +27,7 @@ const providerPartInventoryChange = _import('partInventory/provider/change/index
 const PartIndex = _import('part/index');
 const warehouse_index = _import('warehouse/index');
 const ModelInfoIndex = _import('model/index');
+const SetIndex = _import('set/index');
 
 /* components */
 // const componentsIndex = _import('components/index');
@@ -170,7 +171,8 @@ export const asyncRouterMap_EN = [{
         icon: 'set',
         children: [
             { path: 'index', component: PartIndex, name: 'Spare parts' },
-            { path: 'warehouseIndex', component: warehouse_index, name: 'Warehouse' }
+            { path: 'warehouseIndex', component: warehouse_index, name: 'Warehouse' },
+            { path: 'set_index', component: SetIndex, name: 'Password' }
             // { path: 'model_index', component: ModelInfoIndex, name: 'Model' } 三期启用
             // { path: 'index', component: PartIndex, name: '备件库存 ' },
             // { path: 'tinymce', component: Tinymce, name: '备件库存' },

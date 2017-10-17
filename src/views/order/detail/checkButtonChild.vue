@@ -245,7 +245,7 @@
 
 import { getPartInfoList, getPartInfoListByPO } from 'api/partManage';
 import { checkReportUpdate } from 'api/report';
-import Cookies from 'js-cookie';
+//import Cookies from 'js-cookie';
 
 export default {
   name: 'checkButtonChild',
@@ -474,13 +474,13 @@ export default {
         getPartInfoListByPO(partProviderCode, orderNumber).then(response => {
             if (response.data.status === '0') {
             const list = response.data.rsltData;
-            var language = Cookies.get('assLang');
-            list.forEach(element => {
-              if(language == 'en'){
+            //var language = Cookies.get('assLang');
+            //list.forEach(element => {
+              //if(language == 'en'){
                 this.$set(element, 'value', element.enName);
-              }else{
-                this.$set(element, 'value', element.cnName);
-              }
+              //}else{
+                //this.$set(element, 'value', element.cnName);
+              //}
             });
                 this.partlist = list;
             }

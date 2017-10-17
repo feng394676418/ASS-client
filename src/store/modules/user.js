@@ -80,9 +80,9 @@ const user = {
     actions: {
         // 邮箱登录
         LoginByEmail({ commit }, userInfo) {
-            const email = userInfo.email.trim();
+            const username = userInfo.username.trim();
             return new Promise((resolve, reject) => {
-                loginByEmail(email, userInfo.password).then(response => {
+                loginByEmail(username, userInfo.password).then(response => {
                     const data = response.data;
                     console.log('ssssssssssssssssssssssssa');
                     console.dir(response);
@@ -101,7 +101,7 @@ const user = {
                     }
                     Cookies.set('ASSCLIENT_TOKEN', data.code); // 授权码作为前端token 注意
                     commit('SET_TOKEN', data.code);
-                    commit('SET_EMAIL', email);
+                    commit('SET_EMAIL', username);
 
                     resolve();
                 }).catch(error => {

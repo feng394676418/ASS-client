@@ -475,7 +475,7 @@ export default {
             if (response.data.status === '0') {
             const list = response.data.rsltData;
             //var language = Cookies.get('assLang');
-            //list.forEach(element => {
+            list.forEach(element => {
               //if(language == 'en'){
                 this.$set(element, 'value', element.enName);
               //}else{

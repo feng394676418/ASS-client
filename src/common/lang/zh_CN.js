@@ -134,6 +134,7 @@ export default {
             Repair: '维修',
             usingspareparts: '实际维修使用备件',
             Confirmtherepair: '您确认已经完成工单维修吗？',
+            Repairfinish: '维修完成',
             Shipping: '发货',
             Sendername: '发件人姓名',
             received: '已收货',

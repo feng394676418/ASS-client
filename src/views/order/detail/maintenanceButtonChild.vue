@@ -257,7 +257,7 @@ export default {
         repair(this.repairForm).then(response => {
             console.dir(response);
             if (response.data.status === '0') {
-                this.$message.info(this.$t('order.Detail.Examingfinish'));
+                this.$message.info(this.$t('order.Detail.Repairfinish'));
                 this.$emit('listenBaseInfo');
                 $('#myModal7').modal('hide');
             } else {

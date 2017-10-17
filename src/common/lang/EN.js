@@ -134,6 +134,7 @@ export default {
             Repair: 'Repair',
             usingspareparts: 'Actual maintenance using spare parts',
             Confirmtherepair: 'Have you confirmed that work order maintenance has been completed?',
+            Repairfinish: 'Repair finish!',
             Shipping: 'Shipping',
             Sendername: 'Sender name',
             received: 'Received',

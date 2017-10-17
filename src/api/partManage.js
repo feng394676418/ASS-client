@@ -95,10 +95,10 @@ export function countPart(params) {
     });
 }
 
-export function getPartExcelUrl() {
+export function getPartExcelUrl(language) {
     return fetch({
         url: 'api/part/getClientExcelUrl',
         methods: 'get',
-        params: ''
+        params: { language }
     });
 }

@@ -373,5 +373,8 @@ export default {
     enterpassword: 'Please enter your password',
     enterpasswordagain: 'Please enter your password again',
     Passwordinconsistent: 'Password is inconsistent',
+    passwordexist: 'The new password cannot be the same as the original password!',
+    passwordupdateok: 'Password update success!',
+    passwordupdatefl: 'Password update failure!',
     ...enLocale
 }

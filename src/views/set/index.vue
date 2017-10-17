@@ -5,32 +5,6 @@
         <div class="page-header-inner">
           <div class="pull-right">
             <div class="top-menu">
-              <!--<ul class="nav navbar-nav pull-right" style="position:absolute;right:120px;">
-                                  <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">                  
-                                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"  data-close-others="true" :title="$t('Unreadmessage')">
-                                        <i class="icon-bell"></i>
-                                        <span class="badge bg-important"></span>
-                                    </a>						
-                                    <ul class="dropdown-menu dropdown_msg">
-                                      <li>
-                                          <ul class="dropdown-menu-list">
-                                              <li class="esh-menu-list-no-msg">
-                                                  厂商一加备件申请单PP17062700001于2017/06/27 10:50:30<span class="yellow">通过审核</span>。
-                                              </li>
-                                              <li class="esh-menu-list-no-msg">
-                                                  工单AS170627000001于2017/06/27 10:50:30<span class="yellow">已确认报价</span>，待维修。
-                                              </li>
-                                              <li class="esh-menu-list-no-msg">
-                                                  工单AS170627000001于2017/06/27 10:50:30<span class="yellow">已确认报价</span>，待维修。
-                                              </li>
-                                              <li class="esh-menu-list-no-msg">
-                                                  厂商一加于2017/06/27 10:50:30<span class="yellow">发起坏件返厂</span>单RT17062700001，待发货。
-                                              </li>
-                                          </ul>
-                                      </li>
-                                    </ul>
-                                  </li> 
-                                </ul>-->
               <ul>
                 <li>
                   <rightButtonChild></rightButtonChild>
@@ -72,14 +46,14 @@
 
 <script>
 import bootstrap from 'bootstrap';
-import { getProviderList } from 'api/providerMgr';
+import { updatePassword } from 'api/userInfo';
 import rightButtonChild from './../layout/rightButtonChild';
 import Vue from 'vue';
 
 export default {
   components: { rightButtonChild },
-  data () {
-    var validatePass = (rule, value, callback) => {
+  data() {
+    const validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error(this.$t('enterpassword')));
       } else {
@@ -89,18 +63,22 @@ export default {
         callback();
       }
     };
-    var validatePass2 = (rule, value, callback) => {
+    const validatePass2 = (rule, value, callback) => {
       if (value === '') {
         callback(new Error(this.$t('enterpasswordagain')));
+      } else if (value === this.ruleForm2.pass){
+        callback(new Error(this.$t('passwordexist')));
       } else {
         callback();
       }
     };
-    var validatePass3 = (rule, value, callback) => {
+    const validatePass3 = (rule, value, callback) => {
       if (value === '') {
         callback(new Error(this.$t('enterpasswordagain')));
       } else if (value !== this.ruleForm2.checkPass) {
         callback(new Error(this.$t('Passwordinconsistent')));
+      } else if (value === this.ruleForm2.pass) {
+        callback(new Error(this.$t('passwordexist')));
       } else {
         callback();
       }
@@ -127,9 +105,24 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('submit!');
+          updatePassword(this.ruleForm2).then(response => {
+            console.dir(response);
+              if (response.data.status === '0') {
+                this.$message.info(this.$t('passwordupdateok'));
+                // 退出登录
+                const this_ = this;
+                setTimeout(() => {
+                   this_.$store.dispatch('LogOut').then(() => {
+                    location.reload();// 为了重新实例化
+                  });
+                }, 1000);
+            } else {
+              this.$message.error(this.$t('passwordupdatefl'));
+              console.log(response.data.message);
+            }
+          });
         } else {
           console.log('error submit!!');
           return false;

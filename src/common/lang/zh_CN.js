@@ -374,5 +374,8 @@ export default {
     enterpassword: '请输入密码',
     enterpasswordagain: '请再次输入密码',
     Passwordinconsistent: '两次输入新密码不一致!',
+    passwordexist: '新密码不能和原密码相同！',
+    passwordupdateok: '密码修改成功!',
+    passwordupdatefl: '密码修改失败!',
     ...zhLocale
 }

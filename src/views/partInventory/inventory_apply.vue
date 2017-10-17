@@ -229,12 +229,12 @@
                 <span class="spare_tit pull-left">{{$t('order.Detail.Sparepartscodename')}}：</span>
                 <div class="pull-left" style="line-height:28px;">{{partName}}</div>
               </div>
-							<div class="pull-right spare_right">
+							<div class="pull-right spare_right" style="position:relative;">
 								<div class="form-group">
 								<div class="input-group count">
 								  <span class="input-group-addon minus" @click="partCntMinus()">-</span>
-								  <input class="form-control" v-model="partCnt" size="3" placeholder="0" type="text">
-								  <span class="input-group-addon plus" @click="partCntAdd()">+</span>
+								  <input id="partCnt" class="form-control" v-model="partCnt" size="3" placeholder="0" type="text">
+                  <span class="input-group-addon plus" @click="partCntAdd()">+</span>
 								</div>
 								</div>
 								<div class="form-group">
@@ -269,8 +269,7 @@
                              		{{item.enName}}
                           </td>
                           <td class="" style="text-align: center;">
-                             
-								  <input class="form-control" v-model="item.qty" size="6" placeholder="0" type="text">
+								              <input class="form-control" v-model="item.qty" size="6" placeholder="0" type="text" @keyup="checkqty(item)"   >
                           </td>
                           <td class="" style="text-align: center;">
                              		 {{item.remnantQty}} 
@@ -421,8 +420,6 @@ beforeCreate() {
       this.searchBaseInfoList();
     },
     handTableSort(val) {
-          console.log('~~~~~~~~~~~~~~~~~~~~~');
-          console.dir(val);
           this.queryInfo.sortName = val.prop;
           this.queryInfo.sortOrder = val.order === 'ascending' ? 'desc' : 'asc';
           this.searchBaseInfoList();
@@ -665,13 +662,21 @@ beforeCreate() {
       if(ev.keyCode == 13){
         this.searchBaseInfoList();
       }
+    },
+    checkqty(item){
+      item.qty=item.qty.replace(/\D/g,'','');
+    }
+  },
+  //监听文本框的值
+  watch:{
+    partCnt(){
+      this.partCnt=this.partCnt.replace(/\D/g,'','');
     }
   }
 }
 </script>
 
 <style>
-
 .el-date-editor--daterange.el-input{
  width: 190px
 }

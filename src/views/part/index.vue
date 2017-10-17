@@ -552,7 +552,8 @@
       $('#partfile').val('');
     },
     getExcelUrl(){
-      getPartExcelUrl().then(response => {
+      var language = Cookies.get('assLang');
+      getPartExcelUrl(language).then(response => {
         this.partExcelUrl = response.data;
       })
     },

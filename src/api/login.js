@@ -23,7 +23,7 @@ export function logout() {
     });
 }
 
-export function getInfo(code, oauth_js_id) {
+export function getInfo(code, oauth_js_id, userName) {
     const oauth2AuthcInfo = { // oauth2配置
         clientId: '3afddd82-846b-4445-9380-46df7db78c90',
         clientSecret: '3223dbe57917b942f740630b230014c4',
@@ -45,7 +45,8 @@ export function getInfo(code, oauth_js_id) {
             user_info_uri: oauth2AuthcInfo.userInfoUri,
             redirect_uri: oauth2AuthcInfo.redirectUri,
             no_redirect: oauth2AuthcInfo.no_redirect,
-            oauth_js_id: oauth_js_id.toString()
+            oauth_js_id: oauth_js_id.toString(),
+            username: userName.toString()
         }
     });
 }

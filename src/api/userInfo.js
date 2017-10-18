@@ -23,11 +23,12 @@
  */
 
 import fetch from 'utils/fetch';
+import md5 from 'js-md5'; // 密码加密
 
 export function updatePassword(form) {
     const userInfoSendDto = {
-        oldPassword: form.pass,
-        password: form.confirmpass
+        oldPassword: md5(form.pass),
+        password: md5(form.confirmpass)
     };
     return fetch({
         url: 'api/user/set/security',

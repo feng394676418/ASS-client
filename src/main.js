@@ -104,7 +104,12 @@ router.beforeEach((to, from, next) => {
                     })
                 }).catch(err => {
                     // layer弹出框
-                    layer.msg(err.message, { time: 5000, icon: 2 });
+                    if (err.message === '') {
+                        layer.msg('Please try again later!');
+                    } else {
+                        layer.msg(err.message, { time: 5000, icon: 2 });
+                    }
+
                     Cookies.remove('ASS_TOKEN');
                     console.log('前端token(授权码) 信息------>' + store.getters.token);
                     next({ path: '/' });

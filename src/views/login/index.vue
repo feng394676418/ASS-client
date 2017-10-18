@@ -20,10 +20,10 @@
                  label-width="0px"
                  class="card-box login-form">
             <h3 class="title">{{$t('WingsingASS')}}</h3>
-            <el-form-item prop="email">
-                <span class="svg-container"><wscn-icon-svg icon-class="jiedianyoujian"/></span>
-                <el-input name="email" type="text" v-model="loginForm.email" autoComplete="on"
-                          :placeholder="$t('order.mail')"></el-input>
+            <el-form-item prop="username">
+                <span class="svg-container"><wscn-icon-svg icon-class="yonghufill"/></span>
+                <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on"
+                          :placeholder="$t('username')"></el-input>
             </el-form-item>
             <el-form-item prop="password">
                 <span class="svg-container"><wscn-icon-svg icon-class="mima"/></span>
@@ -54,28 +54,42 @@
     export default {
       name: 'login',
       data() {
-        const validateEmail = (rule, value, callback) => {
-          if (!isWscnEmail(value)) {
-            callback(new Error(this.$t('legalemail')));
+        // const validateEmail = (rule, value, callback) => {
+        //   if (!isWscnEmail(value)) {
+        //     callback(new Error(this.$t('legalemail')));
+        //   } else {
+        //     callback();
+        //   }
+        // };
+        // const validatePass = (rule, value, callback) => {
+        //   if (value.length < 6) {
+        //     callback(new Error(this.$t('passworddigits')));
+        //   } else {
+        //     callback();
+        //   }
+        // };
+        const validateusername = (rule, value, callback) => {
+          if (!value) {
+            callback(new Error(this.$t('Usernameempty')));
           } else {
             callback();
           }
         };
         const validatePass = (rule, value, callback) => {
-          if (value.length < 6) {
-            callback(new Error(this.$t('passworddigits')));
+          if (!value) {
+            callback(new Error(this.$t('passwordempty')));
           } else {
             callback();
           }
-        };
+        };       
         return {
           loginForm: {
-            email: '',
+            username: '',
             password: ''
           },
           loginRules: {
-            email: [
-                { required: true, trigger: 'blur', validator: validateEmail }
+            username: [
+                { required: true, trigger: 'blur', validator: validateusername }
             ],
             password: [
                 { required: true, trigger: 'blur', validator: validatePass }

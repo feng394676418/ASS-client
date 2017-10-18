@@ -134,6 +134,7 @@ export default {
             Repair: 'Repair',
             usingspareparts: 'Actual maintenance using spare parts',
             Confirmtherepair: 'Have you confirmed that work order maintenance has been completed?',
+            Repairfinish: 'Repair finish!',
             Shipping: 'Shipping',
             Sendername: 'Sender name',
             received: 'Received',
@@ -195,6 +196,7 @@ export default {
     MSG_NG: 'operation failed！',
     Unreadmessage: 'Unread message',
     Personalinfo: 'Personal info.',
+    username: 'Username',
     Changepassword: 'Change password',
     Logout: 'Log out',
     Chinese: '简体中文',
@@ -203,8 +205,8 @@ export default {
     password: 'Password',
     Login: 'Log in',
     Forgotpassword: 'Forgot your password (or first login)',
-    legalemail: 'Please enter the correct legal email',
-    passworddigits: 'The password can not be less than 6 digits',
+    Usernameempty: 'Username can not be empty',
+    passwordempty: 'password can not be empty',
     all: 'All',
     // 备件
     part: {

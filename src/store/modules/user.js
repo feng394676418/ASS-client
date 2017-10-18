@@ -81,10 +81,10 @@ const user = {
     actions: {
         // 邮箱登录
         LoginByEmail({ commit }, userInfo) {
-            const email = userInfo.email.trim();
+            const userName = userInfo.username.trim();
             const password = md5(userInfo.password);
             return new Promise((resolve, reject) => {
-                loginByEmail(email, password).then(response => {
+                loginByEmail(userName, password).then(response => {
                     const data = response.data;
                     console.dir(response);
                     if (data.status === '0') {
@@ -102,8 +102,8 @@ const user = {
                     }
                     Cookies.set('ASSCLIENT_TOKEN', data.code); // 授权码作为前端token 注意
                     commit('SET_TOKEN', data.code);
-                    commit('SET_EMAIL', email);
-                    commit('SET_NAME', name);
+                    commit('SET_EMAIL', userName);
+                    commit('SET_NAME', userName);
 
                     resolve();
                 }).catch(error => {
@@ -150,7 +150,7 @@ const user = {
                     } else {
                         // 授权登录失败
                         console.log('授权登录失败');
-                        throw new Error('授权已过期!');
+                        throw new Error(rpData.message);
                     }
                 }).catch(error => {
                     // 以防万一再次删除

@@ -134,6 +134,7 @@ export default {
             Repair: '维修',
             usingspareparts: '实际维修使用备件',
             Confirmtherepair: '您确认已经完成工单维修吗？',
+            Repairfinish: '维修完成',
             Shipping: '发货',
             Sendername: '发件人姓名',
             received: '已收货',
@@ -195,6 +196,7 @@ export default {
     MSG_NG: '操作失败！',
     Unreadmessage: '未读消息',
     Personalinfo: '个人信息',
+    username: '用户名',
     Changepassword: '修改密码',
     Logout: '退出系统',
     Chinese: '简体中文',
@@ -202,8 +204,8 @@ export default {
     password: '密码',
     Login: '登录',
     Forgotpassword: '忘记密码（或首次登录）',
-    legalemail: '请输入正确的合法邮箱',
-    passworddigits: '密码不能少于6位',
+    Usernameempty: '用户名不能为空',
+    passwordempty: '密码不能为空',
     all: '全部',
     // 备件
     part: {

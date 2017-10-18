@@ -21,24 +21,20 @@
     </div>
     <div class="clearfix"></div>
     <div class="user_content main_form_input">
-      <el-row :gutter="20">
-        <el-col :xs="18" :sm="14" :md="8" :lg="5">
-          <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="120px" class="demo-ruleForm">
-            <el-form-item :label="$t('oldpassword')" prop="pass">
-              <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
-            </el-form-item>
-            <el-form-item :label="$t('newpassword')" prop="checkPass">
-              <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
-            </el-form-item>
-            <el-form-item :label="$t('confirmpassword')" prop="confirmpass">
-              <el-input type="password" v-model="ruleForm2.confirmpass" auto-complete="off"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="submitForm('ruleForm2')">{{$t('order.Affirm')}}</el-button>
-            </el-form-item>
-          </el-form>
-        </el-col>
-      </el-row>
+      <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="120px" class="demo-ruleForm">
+        <el-form-item :label="$t('oldpassword')" prop="pass">
+          <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('newpassword')" prop="checkPass">
+          <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('confirmpassword')" prop="confirmpass">
+          <el-input type="password" v-model="ruleForm2.confirmpass" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm('ruleForm2')">{{$t('order.Affirm')}}</el-button>
+        </el-form-item>
+      </el-form>
     </div>
 
   </div>
@@ -66,7 +62,7 @@ export default {
     const validatePass2 = (rule, value, callback) => {
       if (value === '') {
         callback(new Error(this.$t('enterpasswordagain')));
-      } else if (value === this.ruleForm2.pass){
+      } else if (value === this.ruleForm2.pass) {
         callback(new Error(this.$t('passwordexist')));
       } else {
         callback();
@@ -109,15 +105,15 @@ export default {
         if (valid) {
           updatePassword(this.ruleForm2).then(response => {
             console.dir(response);
-              if (response.data.status === '0') {
-                this.$message.info(this.$t('passwordupdateok'));
-                // 退出登录
-                const this_ = this;
-                setTimeout(() => {
-                   this_.$store.dispatch('LogOut').then(() => {
-                    location.reload();// 为了重新实例化
-                  });
-                }, 1000);
+            if (response.data.status === '0') {
+              this.$message.info(this.$t('passwordupdateok'));
+              // 退出登录
+              const this_ = this;
+              setTimeout(() => {
+                this_.$store.dispatch('LogOut').then(() => {
+                  location.reload();// 为了重新实例化
+                });
+              }, 1000);
             } else {
               // this.$message.error(this.$t('passwordupdatefl'));
               this.$message.error(response.data.message);
@@ -142,6 +138,10 @@ export default {
 @import '/static/css/style.css';
 </style>
 <style>
+.demo-ruleForm input {
+  max-width: 200px;
+}
+
 .main_form_input .form-group {
   margin-bottom: 25px;
 }
@@ -160,7 +160,8 @@ export default {
   background: #f7f8fd;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
   border: 1px solid #aab0d1;
-  height: 34px;
+  height: 34px; 
+  border-radius: 4px!important;
 }
 
 .el-button--primary,

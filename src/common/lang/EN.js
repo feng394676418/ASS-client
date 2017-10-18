@@ -371,7 +371,7 @@ export default {
     noStockInfo: 'No stock information!',
     oldpassword: 'Old password:',
     newpassword: 'New password:',
-    confirmpassword: 'confirm password:',
+    confirmpassword: 'Confirm password:',
     enterpassword: 'Please enter your password',
     enterpasswordagain: 'Please enter your password again',
     Passwordinconsistent: 'Password is inconsistent',

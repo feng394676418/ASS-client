@@ -41,7 +41,7 @@
           </span>
         </el-form-item>
         <el-form-item>
-          <el-button :type="pwdType" @click="submitForm('ruleForm2')">{{$t('order.Affirm')}}</el-button>
+          <el-button type="primary" class="btn btn-primary" @click="submitForm('ruleForm2')">{{$t('order.Affirm')}}</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -186,6 +186,9 @@ export default {
   font-size: 16px;
   color: #d0d1d2;
   cursor: pointer;
+}
+.el-form-item__error{
+  padding-top:3px
 }
 
 .demo-ruleForm input {

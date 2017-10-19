@@ -287,7 +287,7 @@
       </div>
         <div class="modal-footer">        	
           <button data-dismiss="modal" class="btn btn-cancel" type="button">{{$t('order.Cancel')}}</button>
-          <button class="btn btn-primary" type="button" @click="confirmApply()">{{$t('order.Affirm')}}</button>
+          <button id="btnSubmit" class="btn btn-primary" type="button" @click="confirmApply()">{{$t('order.Affirm')}}</button>
         </div>
     </div>
 
@@ -459,11 +459,14 @@ beforeCreate() {
         this.$message.error(this.$t('part.selectaccessories'));
         return;
       }
+      //防止连续点击两次
+      $('#btnSubmit').attr('disabled', 'true');
+      setTimeout(() => {
+          $('#btnSubmit').removeAttr('disabled');
+      }, 3000);
       // 申请备件确认
       this.stockOrderForm.owner = this.searchInfo.searchOwner;
       this.stockOrderForm.stockDetailList = this.partSelectItemList;
-      console.log('stockOrderForm---------------------------------------->');
-      console.dir(this.stockOrderForm);
       createApplyStockOrder(this.stockOrderForm).then(response => {
           if (response.data.status === '0') {
               this.$message.info(this.$t('part.partsapplicationsuccessful'));

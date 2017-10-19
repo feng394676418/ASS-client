@@ -129,7 +129,7 @@
         </div>
         <div class="modal-footer">        	
           <button data-dismiss="modal" class="btn btn-cancel" type="button">{{$t('order.Cancel')}}</button>
-          <button class="btn btn-primary" type="button" @click="acceptOrder">{{$t('order.Affirm')}}</button>
+          <button id="btnSubmit" class="btn btn-primary" type="button" @click="acceptOrder">{{$t('order.Affirm')}}</button>
         </div>
         
       </div>
@@ -203,8 +203,11 @@ export default {
         this.acceptForm.partsStatus = value.toString();
       },
       acceptOrder() {
-        console.dir(this.baseInfo);
-        console.log(this.baseInfo.orderNumber);
+        //防止连续点击两次
+        $('#btnSubmit').attr('disabled', 'true');
+        setTimeout(() => {
+            $('#btnSubmit').removeAttr('disabled');
+        }, 3000);
         this.acceptForm.orderNumber = this.baseInfo.orderNumber;
         this.acceptForm.repairId = this.baseInfo.repairId;
         this.acceptForm.emergencyName = this.baseInfo.emergencyName;

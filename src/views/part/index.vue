@@ -226,7 +226,7 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-cancel"  @click="cancelPartModel">{{$t('order.Cancel')}}</button>
-            <button class="btn btn-primary" v-verify-final-check:verifyPartForm type="submit">{{$t('order.Affirm')}}</button>
+            <button id="btnSubmit" class="btn btn-primary" v-verify-final-check:verifyPartForm type="submit">{{$t('order.Affirm')}}</button>
           </div>
         </div>
       </div>
@@ -412,6 +412,11 @@
               }
           })
         }else{
+          //防止连续点击两次
+          $('#btnSubmit').attr('disabled', 'true');
+          setTimeout(() => {
+              $('#btnSubmit').removeAttr('disabled');
+          }, 3000);
           addPart(this.part).then(response => {
               console.dir(response);
               if(response.data.status=='0'){

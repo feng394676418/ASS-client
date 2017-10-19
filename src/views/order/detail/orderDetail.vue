@@ -726,6 +726,9 @@ export default {
 					if(this.getAppLanguage()=='en' && this.baseInfo.appearance != '' && this.baseInfo.appearance != null){
                 this.baseInfo.appearance = this.baseInfo.appearance.replace('外观完好','Normal').replace('外观破损','Abnormal');
           }
+					if(this.getAppLanguage()=='zh' && this.baseInfo.appearance != '' && this.baseInfo.appearance != null){
+                this.baseInfo.appearance = this.baseInfo.appearance.replace('Normal','外观完好').replace('Abnormal','外观破损');
+          }
 					this.$set(this.baseInfo, 'partsStatusArray', this.partsStatusArray);
         });
 

@@ -201,13 +201,13 @@ export default {
         _this.getOwnerList(_this.providerCode);
 
         Vue.filter('productTypeFilter', function(val) {
-            var productTypeName  = '';
-            _this.productTypeOption.forEach(function (item) {
-                    if(item.value == val){
-                        productTypeName =  item.label;
-                  }
-          　　　});
-                  return productTypeName;
+          var productTypeName  = '';
+          _this.productTypeOption.forEach(function (item) {
+            if(item.value == val || item.label == val){
+              productTypeName =  item.label;
+            }
+          });
+          return productTypeName;
       });
     },
     methods: {
@@ -297,18 +297,18 @@ export default {
         },
         expPartInventory(expList){
           expList.map(obj => this.productTypeOption.map(function (item) {
-                  if(item.value == obj.inventoryType){
-                      obj.inventoryType =  item.label;
-                  }
+            if(item.value == obj.inventoryType){
+                obj.inventoryType =  item.label;
+            }
     　　　 }));
             require.ensure([], () => {
                 const { export_json_to_excel } = require('vendor/Export2Excel');
                 var tHeader;
                 var filterVal;
 
-                    tHeader = [this.$t('inventory.owner'), this.$t('inventory.inventoryType'),this.$t('inventory.sku'),this.$t('inventory.name'),
-                    this.$t('inventory.unit'), this.$t('inventory.qty')];
-                    filterVal = ['owner', 'inventoryType','sku','cnName','unit','number'];
+                tHeader = [this.$t('inventory.owner'), this.$t('inventory.inventoryType'),this.$t('inventory.sku'),this.$t('inventory.name'),
+                this.$t('inventory.unit'), this.$t('inventory.qty')];
+                filterVal = ['owner', 'inventoryType','sku','enName','unit','availableNum'];
                 
                 const data = this.formatJson(filterVal, expList);
                 export_json_to_excel(tHeader, data, this.$t('inventory.title')+'  '+parseTime(new Date()));

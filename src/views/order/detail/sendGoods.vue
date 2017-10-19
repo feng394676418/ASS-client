@@ -58,8 +58,8 @@
 
           <div class="panel-body"> 
               <div class="form-group col-md-6">
-                <label for="">{{$t('order.country')}} </label>
-                  <el-select class="select_list default form-control" filterable v-model="countrytmp" :placeholder="baseInfo.userCountry" @change="countyChange">
+                <label for="">{{$t('order.country')}} <b>* </b></label>
+                  <el-select id="country" class="select_list default form-control" filterable v-model="orderAddrForm.country" @change="countyChange">
                     <el-option
                       v-for="item in countryList"
                       :key="item.sortname"
@@ -67,12 +67,12 @@
                       :value="item">
                     </el-option>
                   </el-select>
-
-								<div class="clearfix"></div>		
+                  <div v-verify-msg:country ref="country"></div>
+                  <input v-model="orderAddrForm.country" hidden alt="verifyForm" v-verify-input:nonvoid ="{id:'country',format:true,title:$t('order.country')}"/>
               </div>
               <div class="form-group col-md-6">
                 <label for="">{{$t('order.province')}}</label>
-                  <el-select class="select_list default form-control" v-model="statetmp" :placeholder="baseInfo.userProvince" @change="stateChange">
+                  <el-select class="select_list default form-control" v-model="orderAddrForm.province" @change="stateChange">
                     <el-option
                       v-for="item in stateList"
                       :key="item.sortname"
@@ -83,33 +83,29 @@
 								<div class="clearfix"></div>		
               </div>
               <div class="form-group col-md-6">
-                <label for="">{{$t('order.city')}}</label>
-                  <el-autocomplete v-model="orderAddrForm.city" :placeholder="citytmp" id="userCity" :fetch-suggestions="querySearchCity" class="select_list form-control" @select="citySelect" @keyup.native="citySelect"></el-autocomplete>
-                  <!--<el-select class="select_list default form-control" clearable v-model="baseInfo.userCity" :placeholder="$t('order.choose')" @change="cityChange">
-                    <el-option
-                      v-for="item in cityList"
-                      :key="item.name"
-                      :label="item.name"
-                      :value="item.name">
-                    </el-option>
-                  </el-select>-->
-								<div class="clearfix"></div>		
+                <label for="">{{$t('order.city')}} <b>* </b></label>
+                  <el-autocomplete v-model="orderAddrForm.city" id="userCity" :fetch-suggestions="querySearchCity" class="select_list form-control" @keyup.native="citySelect" @select="citySelect">
+                  </el-autocomplete>
+								  <div v-verify-msg:userCity ref="userCity"></div>
+                  <input v-model="orderAddrForm.city" hidden alt="verifyForm" v-verify-input:nonvoid ="{id:'userCity',format:true,title:$t('order.city')}"/>
               </div>
               
               <div class="form-group col-md-6">
-                <label for="">{{$t('order.zipcode')}}</label>
-                <input class="form-control" v-model="orderAddrForm.postcode" :placeholder="baseInfo.userPostcode" id="" type="text" />
+                <label for="">{{$t('order.zipcode')}} <b>* </b></label>
+                <input class="form-control" id="postcode" alt="verifyForm" v-model="orderAddrForm.postcode" v-verify-input:nonvoid ="{id:'postcode',format:true,title:$t('order.zipcode')}" type="text" />
+                <div v-verify-msg:postcode></div>
               </div>	
               <div class="clearfix"></div>
               <div class="form-group col-md-12">
-              	<label for="">{{$t('order.address')}}</label>
-                <input class="form-control" id="" v-model="orderAddrForm.addressDetail" :placeholder="baseInfo.userAddress" type="text" />
+              	<label for="">{{$t('order.address')}} <b>* </b></label>
+                <input class="form-control" id="addressDetail" alt="verifyForm" v-model="orderAddrForm.addressDetail" v-verify-input:nonvoid ="{id:'addressDetail',format:true,title:$t('order.address')}" type="text" />
+                <div v-verify-msg:addressDetail></div>
               </div>
           </div>
 					<div class="panel-body">
               <div class="form-group col-md-6">
-                <label for="">{{$t('order.Detail.Courier')}}</label>
-                  <el-select class="select_list default form-control" v-model="orderAddrForm.sendExpresscode" :placeholder="$t('order.choose')">
+                <label for="">{{$t('order.Detail.Courier')}} <b>* </b></label>
+                  <el-select id="sendExpresscode" class="select_list default form-control" v-model="orderAddrForm.sendExpresscode" :placeholder="$t('order.choose')" @change="remExpresscodeStyle">
                     <el-option
                       v-for="item in sendExpresscodeOptions"
                       :key="item.value"
@@ -117,7 +113,8 @@
                       :value="item.value">
                     </el-option>
                   </el-select>
-								<div class="clearfix"></div>		
+								  <div v-verify-msg:sendExpresscode ref="sendExpresscode"></div>
+                  <input v-model="orderAddrForm.sendExpresscode" hidden alt="verifyForm" v-verify-input:nonvoid ="{id:'sendExpresscode',format:true,title:$t('order.Detail.Courier')}"/>
               </div>              
 
 					</div>
@@ -126,7 +123,7 @@
         </div>
         <div class="modal-footer">        	
           <button data-dismiss="modal" class="btn btn-cancel" type="button">{{$t('order.Cancel')}}</button>
-          <button id="btnSubmit" class="btn btn-primary" type="button" v-loading.fullscreen.lock="loading" @click="confirm()">{{$t('order.Affirm')}}</button>
+          <button id="btnSubmit" class="btn btn-primary" v-verify-final-check:verifyForm type="submit" v-loading.fullscreen.lock="loading">{{$t('order.Affirm')}}</button>
         </div>
         
       </div>
@@ -152,19 +149,21 @@ export default {
   created() {
     this.getExpressCodeList(this.orderAddrForm.orderNumber, this.providerCode);
     this.getCountryList();
+    this.initAddress();
+    this.$on('verifyForm', function() {
+      this.confirm();
+    });
   },
   data() {
     return {
       loading: false,
-      countrytmp: '',
-      statetmp: '',
-      citytmp: this.baseInfo.userCity,
       providerCode: this.$store.getters.providerCode,
       orderAddrForm: {
           uid: this.$store.getters.uid,
           orderNumber: this.$route.params.orderNumber,
           country: '',
           countryCode: '',
+          countryTemp: '',
           province: '',
           provinceCode: '',
           city: '',
@@ -190,7 +189,8 @@ export default {
       },
       countryList: [],
       stateList: [],
-      cityList: []
+      cityList: [],
+      currbaseInfo: this.baseInfo
     }
   },
   methods: {
@@ -205,20 +205,17 @@ export default {
       }, 3000);
       // 确认
       this.loading = true;
-     // setTimeout(() => {
-    sendOrder(this.orderAddrForm).then(response => {
-      if (response.data.status === '0') {
-          this.loading = false;
-          this.$message.info(this.$t('order.Detail.Deliveryfinished'));
-          this.$emit('listenBaseInfo');
-          $('#myModal4').modal('hide');
-      } else {
-          this.loading = false;
-          this.$message.error(this.$t('order.Detail.Exceptional') + response.data.message);
-      }
-    });
-      //  this.loading = false;
-      // }, 20000);
+      sendOrder(this.orderAddrForm).then(response => {
+        if (response.data.status === '0') {
+            this.loading = false;
+            this.$message.info(this.$t('order.Detail.Deliveryfinished'));
+            this.$emit('listenBaseInfo');
+            $('#myModal4').modal('hide');
+        } else {
+            this.loading = false;
+            this.$message.error(this.$t('order.Detail.Exceptional') + response.data.message);
+        }
+      });
     },
     getExpressCodeList(orderNumber, providerCode) {
       //
@@ -245,16 +242,19 @@ export default {
       })
     },
     countyChange(val) {
-      this.orderAddrForm.country = val.name;
-      this.orderAddrForm.countryCode = val.sortname;
+      if(typeof(val)=='string'){
+        return ;
+      }
+      //如果有值，则去掉国家的验证提示
+      if(val != ''){
+        this.$refs.country.style.display = "none";
+      }
       getStateList(val.id).then(response => {
           if (response.data.status === '0') {
-              this.baseInfo.userProvince = '';
-              this.citytmp = '';
+              this.orderAddrForm.province = '';
+              this.orderAddrForm.provinceCode = '';
               this.orderAddrForm.city = '';
-              this.baseInfo.userPostcode = '';
               this.orderAddrForm.postcode = '';
-              this.baseInfo.userAddress = '';
               this.orderAddrForm.addressDetail = '';
               this.stateList = response.data.rsltData;
           } else {
@@ -264,17 +264,14 @@ export default {
     },
     stateChange(val) {
       if(val =='' || val == undefined){
-         return ;
+        return ;
       }
-      this.orderAddrForm.province = val.name;
-      this.orderAddrForm.provinceCode = val.sortname === null || val.sortname === undefined ? '' : val.sortname;
+      // this.orderAddrForm.province = val.name;
+      // this.orderAddrForm.provinceCode = val.sortname === null || val.sortname === undefined ? '' : val.sortname;
       getCityList(val.id).then(response => {
           if (response.data.status === '0') {
-              this.citytmp = '';
               this.orderAddrForm.city = '';
-              this.baseInfo.userPostcode = '';
               this.orderAddrForm.postcode = '';
-              this.baseInfo.userAddress = '';
               this.orderAddrForm.addressDetail = '';
               this.cityList = response.data.rsltData;
               this.cityList.forEach(item => {
@@ -297,17 +294,35 @@ export default {
       };
     },
     citySelect(){
+      //如果有值，则去掉城市的验证提示
+      if(this.orderAddrForm.city != ''){
+          this.$refs.userCity.style.display = "none";
+      }
+      if(this.orderAddrForm.city == ''){
+          this.$refs.userCity.style.display = "";
+      }
       //清空邮编和详细地址
-      this.baseInfo.userPostcode = '';
       this.orderAddrForm.postcode = '';
-      this.baseInfo.userAddress = '';
       this.orderAddrForm.addressDetail = '';
+    },
+    initAddress(){
+      this.orderAddrForm.country = this.currbaseInfo.userCountry;
+      this.orderAddrForm.countryCode = this.currbaseInfo.userCountryCode;
+      this.orderAddrForm.province = this.currbaseInfo.userProvince;
+      this.orderAddrForm.city = this.currbaseInfo.userCity;
+      this.orderAddrForm.postcode = this.currbaseInfo.userPostcode;
+      this.orderAddrForm.addressDetail = this.currbaseInfo.userAddress;
+    },
+    remExpresscodeStyle(val){
+      if(val != ''){
+        this.$refs.sendExpresscode.style.display = "none";
+      }
     }
     
   }
 }
 </script>
-<<style>
+<style>
   .el-loading-mask {
     background-color: hsla(0, 0%, 100%, 0.3);
   }

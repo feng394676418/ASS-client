@@ -225,7 +225,7 @@
         </div>
         <div class="modal-footer">
           <button data-dismiss="modal" class="btn btn-cancel" type="button">{{$t('order.Cancel')}}</button>
-          <button class="btn btn-primary" type="button" @click="commit()">{{$t('order.Affirm')}}</button>
+          <button id="btnSubmit" class="btn btn-primary" type="button" @click="commit()">{{$t('order.Affirm')}}</button>
         </div>
       </div>
     </div>
@@ -546,8 +546,11 @@ export default {
           this.$set(element, 'partCName', element.cnName);
         });
         this.checkReportForm.orderPartList = tmpList;
-        console.log('--------------report---------response------------->');
-        console.dir(this.checkReportForm);
+        //防止连续点击两次
+        $('#btnSubmit').attr('disabled', 'true');
+        setTimeout(() => {
+            $('#btnSubmit').removeAttr('disabled');
+        }, 3000);
         checkReportUpdate(this.checkReportForm).then(response => {
             console.dir(response);
             if (response.data.status === '0') {

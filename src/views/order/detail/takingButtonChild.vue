@@ -25,7 +25,7 @@
         </div>
         <div class="modal-footer">        	
           <button data-dismiss="modal" class="btn btn-cancel" type="button">{{$t('order.Cancel')}}</button>
-          <button class="btn btn-primary" type="button" @click="confirm()">{{$t('order.Affirm')}}</button>
+          <button id="btnSubmit" class="btn btn-primary" type="button" @click="confirm()">{{$t('order.Affirm')}}</button>
         </div>
         
       </div>
@@ -51,6 +51,11 @@ export default {
   },
   methods: {
     confirm() {
+      //防止连续点击两次
+      $('#btnSubmit').attr('disabled', 'true');
+      setTimeout(() => {
+          $('#btnSubmit').removeAttr('disabled');
+      }, 3000);
       orderOver(this.orderNumber, this.uid).then(response => {
           if (response.data.status === '0') {
                 this.$message.info(this.$t('order.Detail.receiptFinished'));

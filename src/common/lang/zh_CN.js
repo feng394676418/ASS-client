@@ -378,5 +378,6 @@ export default {
     passwordexist: '新密码不能和原密码相同！',
     passwordupdateok: '密码修改成功!',
     passwordupdatefl: '密码修改失败!',
+    originalpassworderror: '原密码错误!',
     ...zhLocale
 }

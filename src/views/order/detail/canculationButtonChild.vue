@@ -22,7 +22,7 @@
         </div>
         <div class="modal-footer">        	
           <button data-dismiss="modal" class="btn btn-cancel" type="button">{{$t('order.Cancel')}}</button>
-          <button class="btn btn-primary" type="button" @click="confirm()">{{$t('order.Affirm')}}</button>
+          <button id="btnSubmit" class="btn btn-primary" type="button" @click="confirm()">{{$t('order.Affirm')}}</button>
         </div>
         
       </div>
@@ -52,6 +52,11 @@ export default {
             this.$message.error(this.$t('order.Detail.TransactionNoNOTNULL'));
             return;
       }
+      //防止连续点击两次
+      $('#btnSubmit').attr('disabled', 'true');
+      setTimeout(() => {
+          $('#btnSubmit').removeAttr('disabled');
+      }, 3000);
       // 确认
       updateTradeNumber(this.orderNumber, this.uid, this.tradeNumber).then(response => {
           if (response.data.status === '0') {

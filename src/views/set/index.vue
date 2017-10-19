@@ -156,7 +156,8 @@ export default {
                 });
               }, 1000);
             } else {
-              this.$message.error(this.$t('passwordupdatefl'));
+              this.$message.error(this.$t('originalpassworderror'));
+              // this.$message.error(response.data.message);
               console.log(response.data.message);
             }
           });

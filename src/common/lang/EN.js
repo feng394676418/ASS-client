@@ -378,5 +378,6 @@ export default {
     passwordexist: 'The new password cannot be the same as the original password!',
     passwordupdateok: 'Password update success!',
     passwordupdatefl: 'Password update failure!',
+    originalpassworderror: 'Old password is error!',
     ...enLocale
 }

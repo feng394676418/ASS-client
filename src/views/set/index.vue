@@ -23,16 +23,25 @@
     <div class="user_content main_form_input">
       <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="120px" class="demo-ruleForm">
         <el-form-item :label="$t('oldpassword')" prop="pass">
-          <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+          <el-input :type="pwdType" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+          <span class="svg-container show-pwd" @click='showPwd'>
+            <wscn-icon-svg :icon-class="iconclass" />
+          </span>          
         </el-form-item>
         <el-form-item :label="$t('newpassword')" prop="checkPass">
-          <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
+          <el-input :type="pwdType2" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
+          <span class="svg-container show-pwd" @click='showPwd2'>
+            <wscn-icon-svg :icon-class="iconclass2" />
+          </span>          
         </el-form-item>
         <el-form-item :label="$t('confirmpassword')" prop="confirmpass">
-          <el-input type="password" v-model="ruleForm2.confirmpass" auto-complete="off"></el-input>
+          <el-input :type="pwdType3" v-model="ruleForm2.confirmpass" auto-complete="off"></el-input>
+          <span class="svg-container show-pwd" @click='showPwd3'>
+            <wscn-icon-svg :icon-class="iconclass3" />
+          </span>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm2')">{{$t('order.Affirm')}}</el-button>
+          <el-button :type="pwdType" @click="submitForm('ruleForm2')">{{$t('order.Affirm')}}</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -80,7 +89,12 @@ export default {
       }
     };
     return {
-
+      pwdType: 'password',
+      pwdType2: 'password',
+      pwdType3: 'password',
+      iconclass: 'Invisible',
+      iconclass2: 'Invisible',
+      iconclass3: 'Invisible',
       ruleForm2: {
         pass: '',
         checkPass: '',
@@ -100,6 +114,33 @@ export default {
     }
   },
   methods: {
+    showPwd() {
+      if (this.pwdType === 'password') {
+        this.pwdType = '',
+        this.iconclass = 'visible'
+      } else {
+        this.pwdType = 'password',
+        this.iconclass = 'Invisible'
+      }
+    },
+    showPwd2() {
+      if (this.pwdType2 === 'password') {
+        this.pwdType2 = '',
+        this.iconclass2 = 'visible'
+      } else {
+        this.pwdType2 = 'password',
+        this.iconclass2 = 'Invisible'
+      }
+    },
+    showPwd3() {
+      if (this.pwdType3 === 'password') {
+        this.pwdType3 = '',
+        this.iconclass3 = 'visible'
+      } else {
+        this.pwdType3 = 'password',
+        this.iconclass3 = 'Invisible'
+      }
+    },        
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
@@ -137,6 +178,15 @@ export default {
 @import '/static/css/style.css';
 </style>
 <style>
+.show-pwd {
+  position: absolute;
+  left: 175px;
+  top: 0px;
+  font-size: 16px;
+  color: #d0d1d2;
+  cursor: pointer;
+}
+
 .demo-ruleForm input {
   max-width: 200px;
 }
@@ -159,7 +209,7 @@ export default {
   background: #f7f8fd;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
   border: 1px solid #aab0d1;
-  height: 34px; 
+  height: 34px;
   border-radius: 4px!important;
 }
 

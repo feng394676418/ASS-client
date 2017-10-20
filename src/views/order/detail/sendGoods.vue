@@ -98,7 +98,7 @@
               <div class="clearfix"></div>
               <div class="form-group col-md-12">
               	<label for="">{{$t('order.address')}} <b>* </b></label>
-                <input class="form-control" id="addressDetail" alt="verifyForm" v-model="orderAddrForm.addressDetail" v-verify-input:nonvoid ="{id:'addressDetail',format:true,title:$t('order.address')}" type="text" />
+                <input class="form-control" id="addressDetail" alt="verifyForm" v-model="orderAddrForm.addressDetail" v-verify-input:lessthan ="{id:'addressDetail',format:3,title:$t('order.address')}" type="text" />
                 <div v-verify-msg:addressDetail></div>
               </div>
           </div>
@@ -249,6 +249,8 @@ export default {
       if(val != ''){
         this.$refs.country.style.display = "none";
       }
+      this.orderAddrForm.countryCode = val.sortname;
+      this.orderAddrForm.country = val.name;  
       getStateList(val.id).then(response => {
           if (response.data.status === '0') {
               this.orderAddrForm.province = '';
@@ -266,8 +268,11 @@ export default {
       if(val =='' || val == undefined){
         return ;
       }
-      // this.orderAddrForm.province = val.name;
-      // this.orderAddrForm.provinceCode = val.sortname === null || val.sortname === undefined ? '' : val.sortname;
+      if(typeof(val)=='string'){
+        return ;
+      }
+      this.orderAddrForm.province = val.name;
+      this.orderAddrForm.provinceCode = val.sortname === null || val.sortname === undefined ? '' : val.sortname;
       getCityList(val.id).then(response => {
           if (response.data.status === '0') {
               this.orderAddrForm.city = '';

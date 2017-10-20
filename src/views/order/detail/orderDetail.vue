@@ -484,8 +484,8 @@
 
 
 								<!--实际维修结果 已经维修待质检 维修结果出-->
-										<template v-if="logInfoStatus >= 15">
-											<h3>{{$t('order.Detail.partActuralUseTitle')}}</h3>
+									<template v-if="logInfoStatus >= 15">
+										<h3>{{$t('order.Detail.partActuralUseTitle')}}</h3>
 											<div class="right_inner_con">
 	            				<div class="grey_bg"><!--实际维修用备件信息-->
 												<div class="clearfix"></div>
@@ -508,18 +508,19 @@
 											<div class="clearfix"></div>
 									</template>
 
-										<template v-if="logInfoStatus >= 16">
-											<div v-for="testReport in baseInfo.testReportList" :key="testReport.confirmrptId">
-	            			<h3>{{$t('order.Detail.QCreport')}}({{testReport.confirmrptId}})<span :class="testReport.repairOK&&testReport.confirmOK?'fail qualified':'fail'">{{testReport.repairOK&&testReport.confirmOK?$t('order.Detail.QCPass'):$t('order.Detail.QCFail')}}</span>
-	            				<div class="pull-right">
-	            					<div class="pull-left h3_right">
-	            						{{$t('order.Detail.malfunction')}}:<span>{{testReport.repairOK ? $t('order.Detail.solved'):$t('order.Detail.unsolved')}} </span>
-	            					</div>
-	            					<div class="pull-left">
-	            						{{$t('order.Detail.FullFunctionReport')}}:<span>{{testReport.confirmOK? $t('order.Detail.solved'):$t('order.Detail.unsolved')}} </span>
-	            					</div>
-	            				</div>
-	            			</h3>
+									<!--<template v-if="logInfoStatus >= 16">-->
+									<template v-if="baseInfo.testReportList != null || baseInfo.testReportList != '' ">
+										<div v-for="testReport in baseInfo.testReportList" :key="testReport.confirmrptId">
+	            				<h3>{{$t('order.Detail.QCreport')}}({{testReport.confirmrptId}})<span :class="testReport.repairOK&&testReport.confirmOK?'fail qualified':'fail'">{{testReport.repairOK&&testReport.confirmOK?$t('order.Detail.QCPass'):$t('order.Detail.QCFail')}}</span>
+												<div class="pull-right">
+													<div class="pull-left h3_right">
+														{{$t('order.Detail.malfunction')}}:<span>{{testReport.repairOK ? $t('order.Detail.solved'):$t('order.Detail.unsolved')}} </span>
+													</div>
+													<div class="pull-left">
+														{{$t('order.Detail.FullFunctionReport')}}:<span>{{testReport.confirmOK? $t('order.Detail.solved'):$t('order.Detail.unsolved')}} </span>
+													</div>
+												</div>
+	            				</h3>
 										</div>
 									</template>
 

@@ -69,7 +69,7 @@
                             <div class="input-group count spare_code">
                               <!-- <el-input-number  size="small" v-model="tmpPartNumber" class="default form-control"></el-input-number> -->
                               <span class="input-group-addon minus" @click="minusItem(item)">-</span>
-                              <input class="form-control" v-model="item.tmpPartNumber" size="3" placeholder="0" type="text">
+                              <input class="form-control" v-model="item.tmpPartNumber" size="3" placeholder="0" @keyup="checkPartNumber(item)" type="text">
                               <span class="input-group-addon plus" @click="plusItem(item)">+</span> 
                             </div>
                           </td>                                             
@@ -281,7 +281,16 @@ export default {
                 // $('#myModal7').modal();
             }
         });
+      },
+      checkPartNumber(item){
+        item.tmpPartNumber=item.tmpPartNumber.replace(/\D/g,'','');
       }
+  },
+  //监听文本框的值
+  watch:{
+    tmpPartNumber(){
+      this.tmpPartNumber=this.tmpPartNumber.replace(/\D/g,'','');
+    }
   },
   mounted() {
     this.loadAll();

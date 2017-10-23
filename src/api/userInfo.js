@@ -36,3 +36,14 @@ export function updatePassword(form) {
         data: userInfoSendDto
     });
 }
+
+export function checkoldpwd(oldpassword) {
+    const userInfoSendDto = {
+        oldPassword: md5(oldpassword)
+    };
+    return fetch({
+        url: 'api/user/set/checkoldpwd',
+        method: 'post',
+        data: userInfoSendDto
+    });
+}

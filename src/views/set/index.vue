@@ -23,7 +23,7 @@
     <div class="user_content main_form_input">
       <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="120px" class="demo-ruleForm">
         <el-form-item :label="$t('oldpassword')" prop="pass">
-          <el-input :type="pwdType" v-model="ruleForm2.pass" auto-complete="off" @blur="checkoldpwd"></el-input>
+          <el-input :type="pwdType" v-model="ruleForm2.pass" auto-complete="off"></el-input>
           <div id="oldpaderror" class="el-form-item__error" style="display: none;"></div>
           <span class="svg-container show-pwd" @click='showPwd'>
             <wscn-icon-svg :icon-class="iconclass" />
@@ -78,6 +78,15 @@ export default {
         callback();
       }
     };
+    const validateoldpwd = (rule,value,callback) => {
+      checkoldpwd(value).then(response => {
+          if (response.data.status === '1') {
+            callback(new Error(this.$t('originalpassworderror')));
+          } else {
+            callback();
+          }
+      });
+    };
     const validatePass3 = (rule, value, callback) => {
       if (value === '') {
         callback(new Error(this.$t('enterpasswordagain')));
@@ -103,7 +112,8 @@ export default {
       },
       rules2: {
         pass: [
-          { validator: validatePass, trigger: 'blur' }
+          { validator: validatePass, trigger: 'blur' },
+          { validator: validateoldpwd, trigger: 'blur' }
         ],
         checkPass: [
           { validator: validatePass2, trigger: 'blur' }
@@ -165,22 +175,24 @@ export default {
           return false;
         }
       });
-    },
-    checkoldpwd(){
-      const oldpassword = this.ruleForm2.pass;
-      //去除原来的错误提示
-      $(".el-form-item__error").attr("style", "display:none;");
-      if(oldpassword != null && oldpassword != ''){
-        checkoldpwd(oldpassword).then(response => {
-          if (response.data.status === '1') {
-            $("#oldpaderror").attr("style", "display:block;");
-            $('#oldpaderror').text(this.$t('originalpassworderror'));
-          } else {
-            $("#oldpaderror").attr("style", "display:none;");
-          }
-        });
-      }
     }
+
+    // checkoldpwd(){
+    //   const oldpassword = this.ruleForm2.pass;
+    //   //去除原来的错误提示
+    //   $(".el-form-item__error").attr("style", "display:none;");
+    //   if(oldpassword != null && oldpassword != ''){
+    //     checkoldpwd(oldpassword).then(response => {
+    //       if (response.data.status === '1') {
+    //          this.ruleForm2.pass = "";
+    //          $("#oldpaderror").attr("style", "display:block;");
+    //          $('#oldpaderror').text(this.$t('originalpassworderror'));
+    //       } else {
+    //          $("#oldpaderror").attr("style", "display:none;");
+    //       }
+    //     });
+    //   }
+    // }
   }
 }
 </script>

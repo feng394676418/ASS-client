@@ -190,7 +190,6 @@
                   </div>
           </div>
 
-
           <div class="panel-body"> 
 								<div class="table-scrollable modal_find">
                     <table class="table">

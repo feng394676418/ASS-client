@@ -24,6 +24,7 @@
       <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="120px" class="demo-ruleForm">
         <el-form-item :label="$t('oldpassword')" prop="pass">
           <el-input :type="pwdType" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+          <div id="oldpaderror" class="el-form-item__error" style="display: none;"></div>
           <span class="svg-container show-pwd" @click='showPwd'>
             <wscn-icon-svg :icon-class="iconclass" />
           </span>          
@@ -51,7 +52,7 @@
 
 <script>
 import bootstrap from 'bootstrap';
-import { updatePassword } from 'api/userInfo';
+import { updatePassword, checkoldpwd } from 'api/userInfo';
 import rightButtonChild from './../layout/rightButtonChild';
 import Vue from 'vue';
 
@@ -76,6 +77,15 @@ export default {
       } else {
         callback();
       }
+    };
+    const validateoldpwd = (rule,value,callback) => {
+      checkoldpwd(value).then(response => {
+          if (response.data.status === '1') {
+            callback(new Error(this.$t('originalpassworderror')));
+          } else {
+            callback();
+          }
+      });
     };
     const validatePass3 = (rule, value, callback) => {
       if (value === '') {
@@ -102,7 +112,8 @@ export default {
       },
       rules2: {
         pass: [
-          { validator: validatePass, trigger: 'blur' }
+          { validator: validatePass, trigger: 'blur' },
+          { validator: validateoldpwd, trigger: 'blur' }
         ],
         checkPass: [
           { validator: validatePass2, trigger: 'blur' }
@@ -157,8 +168,6 @@ export default {
               }, 1000);
             } else {
               this.$message.error(this.$t('originalpassworderror'));
-              // this.$message.error(response.data.message);
-              console.log(response.data.message);
             }
           });
         } else {
@@ -167,6 +176,23 @@ export default {
         }
       });
     }
+
+    // checkoldpwd(){
+    //   const oldpassword = this.ruleForm2.pass;
+    //   //去除原来的错误提示
+    //   $(".el-form-item__error").attr("style", "display:none;");
+    //   if(oldpassword != null && oldpassword != ''){
+    //     checkoldpwd(oldpassword).then(response => {
+    //       if (response.data.status === '1') {
+    //          this.ruleForm2.pass = "";
+    //          $("#oldpaderror").attr("style", "display:block;");
+    //          $('#oldpaderror').text(this.$t('originalpassworderror'));
+    //       } else {
+    //          $("#oldpaderror").attr("style", "display:none;");
+    //       }
+    //     });
+    //   }
+    // }
   }
 }
 </script>

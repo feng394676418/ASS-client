@@ -447,6 +447,7 @@ beforeCreate() {
     },
     searchBaseInfoList() {
       // 获取页面列表信息
+      this.listLoading = true;
       listApplyInStockOrder(this.queryInfo).then(response => {
           console.dir(response);
           this.list = response.data.list;

@@ -34,6 +34,15 @@ export default class V {
                 },
                 len(v, len) {
                     return v.length == len ? 0 : ['len']
+                },
+                // 小于
+                lessthan(v, len) {
+                    // 先校验是否为空
+                    if (v.length == 0) {
+                        return ['nonvoid']
+                    } else {
+                        return v.length < len ? ['lessthan'] : 0
+                    }
                 }
             }
             // 常用正则
@@ -163,6 +172,10 @@ export default class V {
                     str = '[' + v.value.title + ']'
                     el._cddv.msg = str + '长度必须为:' + v.value.format;
                     break
+                case 'lessthan':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + '长度不能小于:' + v.value.format;
+                    break
                 default:
                     el._cddv.msg = '[' + v.value.title + ']验证不通过'
             }
@@ -193,6 +206,10 @@ export default class V {
                 case 'len':
                     str = '[' + v.value.title + ']'
                     el._cddv.msg = str + 'The length must be:' + v.value.format;
+                    break
+                case 'lessthan':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + 'the length must not be less than:' + v.value.format;
                     break
                 default:
                     el._cddv.msg = '[' + v.value.title + ']Verification does not pass'

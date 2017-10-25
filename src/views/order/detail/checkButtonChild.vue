@@ -190,7 +190,6 @@
                   </div>
           </div>
 
-
           <div class="panel-body"> 
 								<div class="table-scrollable modal_find">
                     <table class="table">
@@ -205,13 +204,13 @@
                       <tbody>
                         <tr class="">
                           <td class="">
-                             <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.collectionCost" placeholder="" type="text">
+                             <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.collectionCost" placeholder="" @keyup="checkCollection(checkReportForm)" type="text">
                           </td>
                           <td class="">
-                               <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.repairCost" placeholder="" type="text">
+                               <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.repairCost" placeholder="" @keyup="checkRepair(checkReportForm)" type="text">
                           </td>
                           <td class="">
-                             <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.mailingCost" placeholder="" type="text">
+                             <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.mailingCost" placeholder="" @keyup="checkMailing(checkReportForm)" type="text">
                           </td>
                           <td class="">
 														<span class="text_yellow big_text">€ {{totalCost | money}}</span>
@@ -561,7 +560,22 @@ export default {
                 this.$message.error('Error! ' + response.data.message);
             }
         });
+      },
+      checkCollection(checkReportForm){
+        checkReportForm.collectionCost=checkReportForm.collectionCost.replace(/\D/g,'','');
+      },
+      checkRepair(checkReportForm){
+        checkReportForm.repairCost=checkReportForm.repairCost.replace(/\D/g,'','');
+      },
+      checkMailing(checkReportForm){
+        checkReportForm.mailingCost=checkReportForm.mailingCost.replace(/\D/g,'','');
       }
+  },
+  //监听文本框的值
+  watch:{
+    tmpPartNumber(){
+      this.tmpPartNumber=this.tmpPartNumber.replace(/\D/g,'','');
+    }
   },
   mounted() {
     this.loadAll();

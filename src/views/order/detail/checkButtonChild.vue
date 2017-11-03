@@ -535,6 +535,8 @@ export default {
 
         // this.checkReportForm.orderPartList = this.orderPartTableData;
         // 局部属性调整
+       
+        
         const tmpList = this.orderPartTableData;
         tmpList.forEach(element => {
           this.$set(element, 'partCnt', element.tmpPartNumber);
@@ -543,6 +545,7 @@ export default {
           this.$set(element, 'providerCode', this.$store.getters.providerCode);
           this.$set(element, 'partEName', element.enName);
           this.$set(element, 'partCName', element.cnName);
+          this.$set(element, 'partCntTotalPrice', (this.checkReportForm.serviceType === '保内维修' ? element.price : element.outPrice ) * element.tmpPartNumber);
         });
         this.checkReportForm.orderPartList = tmpList;
         //防止连续点击两次
@@ -562,13 +565,19 @@ export default {
         });
       },
       checkCollection(checkReportForm){
-        checkReportForm.collectionCost=checkReportForm.collectionCost.replace(/\D/g,'','');
+        if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(checkReportForm.collectionCost)){
+            checkReportForm.collectionCost= '';
+        }
       },
       checkRepair(checkReportForm){
-        checkReportForm.repairCost=checkReportForm.repairCost.replace(/\D/g,'','');
+        if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(checkReportForm.repairCost)){
+            checkReportForm.repairCost= '';
+        }
       },
       checkMailing(checkReportForm){
-        checkReportForm.mailingCost=checkReportForm.mailingCost.replace(/\D/g,'','');
+        if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(checkReportForm.mailingCost)){
+            checkReportForm.mailingCost= '';
+        }
       }
   },
   //监听文本框的值

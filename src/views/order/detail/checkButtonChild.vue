@@ -567,16 +567,22 @@ export default {
       checkCollection(checkReportForm){
         if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(checkReportForm.collectionCost)){
             checkReportForm.collectionCost= '';
+        }else{
+            checkReportForm.collectionCost = checkReportForm.collectionCost.substring(0,checkReportForm.collectionCost.indexOf(".") + 3); 
         }
       },
       checkRepair(checkReportForm){
         if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(checkReportForm.repairCost)){
             checkReportForm.repairCost= '';
+        }else{
+            checkReportForm.repairCost = checkReportForm.repairCost.substring(0,checkReportForm.repairCost.indexOf(".") + 3); 
         }
       },
       checkMailing(checkReportForm){
         if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(checkReportForm.mailingCost)){
             checkReportForm.mailingCost= '';
+        }else{
+            checkReportForm.mailingCost = checkReportForm.mailingCost.substring(0,checkReportForm.mailingCost.indexOf(".") + 3); 
         }
       }
   },

@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     confirm() {
-      //防止连续点击两次
+      // 防止连续点击两次
       $('#btnSubmit').attr('disabled', 'true');
       setTimeout(() => {
           $('#btnSubmit').removeAttr('disabled');

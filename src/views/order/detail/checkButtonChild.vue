@@ -19,7 +19,7 @@
 						<form>
               <div class="form-group col-md-6">
                 <label for="">{{$t('order.Detail.Productmodelconfirmation')}} </label>
-              <el-select class="select_list default form-control" v-model="checkReportForm.productTypeCfm" @change="productTypeChange()" :placeholder="$t('order.choose')">
+              <el-select class="select_list default form-control" filterable v-model="checkReportForm.productTypeCfm" @change="productTypeChange()" :placeholder="$t('order.choose')">
               <el-option
                 v-for="item in productTypeOptions"
                 :key="item.value"
@@ -36,7 +36,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="">{{$t('order.Detail.IMEInumberconfirmation')}} </label>
-                    <el-select v-model="checkReportForm.imeiCfm" @change="imeiChange()" class="select_list default form-control" :placeholder="$t('order.choose')">
+                    <el-select v-model="checkReportForm.imeiCfm" filterable @change="imeiChange()" class="select_list default form-control" :placeholder="$t('order.choose')">
                     <el-option
                       v-for="item in productTypeOptions"
                       :key="item.value"
@@ -58,7 +58,7 @@
               </div>              
               <div class="form-group col-md-6">
                 <label for="">{{$t('order.Detail.Servicetype')}} </label>
-                    <el-select class="select_list default form-control" v-model="checkReportForm.serviceType" :placeholder="$t('order.choose')" @change="totalCostCalc()">
+                    <el-select class="select_list default form-control" filterable v-model="checkReportForm.serviceType" :placeholder="$t('order.choose')" @change="totalCostCalc()">
                     <el-option
                       v-for="item in maintenanceOptions"
                       :key="item.value"
@@ -71,7 +71,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="">{{$t('order.Detail.RepairLevel')}}</label>
-                <el-select class="select_list default form-control choice_leve" v-model="repairLevels" multiple :placeholder="$t('order.choose')">
+                <el-select class="select_list default form-control choice_leve" filterable v-model="repairLevels" multiple :placeholder="$t('order.choose')">
                   <el-option
                     v-for="item in maintenanceLevelOptions"
                     :key="item"

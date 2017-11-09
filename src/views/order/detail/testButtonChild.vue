@@ -20,7 +20,7 @@
           	<form>
               <div class="form-group col-md-6">
                 <label for="">{{$t('order.Detail.IssuesSolved')}}</label>
-                    <el-select class="select_list default form-control" v-model="testReportForm.repairOK" :placeholder="$t('order.choose')">
+                    <el-select class="select_list default form-control" filterable v-model="testReportForm.repairOK" :placeholder="$t('order.choose')">
                     <el-option
                       v-for="item in options"
                       :key="item.value"
@@ -32,7 +32,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="">{{$t('order.Detail.Fullfunctiontestresults')}}</label>
-                   <el-select class="select_list default form-control" v-model="testReportForm.confirmOK" :placeholder="$t('order.choose')">
+                   <el-select class="select_list default form-control" filterable v-model="testReportForm.confirmOK" :placeholder="$t('order.choose')">
                     <el-option
                       v-for="item in options"
                       :key="item.value"

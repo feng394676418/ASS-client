@@ -204,13 +204,13 @@
                       <tbody>
                         <tr class="">
                           <td class="">
-                             <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.collectionCost" placeholder="" @keyup="checkCollection(checkReportForm)" type="text">
+                             <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.collectionCost" placeholder="" @keyup="checkMoney()" type="text">
                           </td>
                           <td class="">
-                               <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.repairCost" placeholder="" @keyup="checkRepair(checkReportForm)" type="text">
+                               <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.repairCost" placeholder="" @keyup="checkMoney()" type="text">
                           </td>
                           <td class="">
-                             <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.mailingCost" placeholder="" @keyup="checkMailing(checkReportForm)" type="text">
+                             <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.mailingCost" placeholder="" @keyup="checkMoney()" type="text">
                           </td>
                           <td class="">
 														<span class="text_yellow big_text">€ {{totalCost | money}}</span>
@@ -428,6 +428,7 @@ export default {
     },
       totalCostCalc() {
         // 配件总价计算(追加)
+        this.checkMoney()
         let priceCountItem;
         let partPriceSumTmp = 0;
         for (priceCountItem of this.orderPartTableData) {
@@ -564,27 +565,37 @@ export default {
             }
         });
       },
-      checkCollection(checkReportForm){
-        if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(checkReportForm.collectionCost)){
-            checkReportForm.collectionCost= '';
-        }else{
-            checkReportForm.collectionCost = checkReportForm.collectionCost.substring(0,checkReportForm.collectionCost.indexOf(".") + 3); 
+      checkMoney(){
+        if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.collectionCost)){
+            this.checkReportForm.collectionCost= '';
+        }else if (this.checkReportForm.collectionCost.indexOf(".") >= 0){
+            this.checkReportForm.collectionCost = this.checkReportForm.collectionCost.substring(0,this.checkReportForm.collectionCost.indexOf(".") + 3); 
         }
-      },
-      checkRepair(checkReportForm){
-        if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(checkReportForm.repairCost)){
-            checkReportForm.repairCost= '';
-        }else{
-            checkReportForm.repairCost = checkReportForm.repairCost.substring(0,checkReportForm.repairCost.indexOf(".") + 3); 
+        if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.repairCost)){
+            this.checkReportForm.repairCost= '';
+        }else if (this.checkReportForm.repairCost.indexOf(".") >= 0){
+            this.checkReportForm.repairCost = this.checkReportForm.repairCost.substring(0,this.checkReportForm.repairCost.indexOf(".") + 3); 
         }
-      },
-      checkMailing(checkReportForm){
-        if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(checkReportForm.mailingCost)){
-            checkReportForm.mailingCost= '';
-        }else{
-            checkReportForm.mailingCost = checkReportForm.mailingCost.substring(0,checkReportForm.mailingCost.indexOf(".") + 3); 
+        if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.mailingCost)){
+            this.checkReportForm.mailingCost= '';
+        }else if (this.checkReportForm.mailingCost.indexOf(".") >= 0){
+            this.checkReportForm.mailingCost = this.checkReportForm.mailingCost.substring(0,this.checkReportForm.mailingCost.indexOf(".") + 3); 
         }
       }
+      // checkRepair(){
+      //   if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.repairCost)){
+      //       this.checkReportForm.repairCost= '';
+      //   }else if (this.checkReportForm.repairCost.indexOf(".") >= 0){
+      //       this.checkReportForm.repairCost = this.checkReportForm.repairCost.substring(0,this.checkReportForm.repairCost.indexOf(".") + 3); 
+      //   }
+      // },
+      // checkMailing(){
+      //   if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.mailingCost)){
+      //       this.checkReportForm.mailingCost= '';
+      //   }else if (this.checkReportForm.mailingCost.indexOf(".") >= 0){
+      //       this.checkReportForm.mailingCost = this.checkReportForm.mailingCost.substring(0,this.checkReportForm.mailingCost.indexOf(".") + 3); 
+      //   }
+      // }
   },
   //监听文本框的值
   watch:{

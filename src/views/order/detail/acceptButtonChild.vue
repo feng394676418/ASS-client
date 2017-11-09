@@ -84,7 +84,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="">{{$t('order.Appearance')}} </label>
-                    <el-select class="select_list default form-control" v-model="baseInfo.appearance" clearable :placeholder="baseInfo.appearance">
+                    <el-select class="select_list default form-control" v-model="baseInfo.appearance" filterable clearable :placeholder="baseInfo.appearance">
                       <el-option
                         v-for="item in showOptions"
                         :key="item.value"

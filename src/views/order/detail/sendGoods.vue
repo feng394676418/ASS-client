@@ -72,7 +72,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="">{{$t('order.province')}}</label>
-                  <el-select class="select_list default form-control" v-model="orderAddrForm.province" @change="stateChange">
+                  <el-select class="select_list default form-control" filterable v-model="orderAddrForm.province" @change="stateChange">
                     <el-option
                       v-for="item in stateList"
                       :key="item.sortname"
@@ -105,7 +105,7 @@
 					<div class="panel-body">
               <div class="form-group col-md-6">
                 <label for="">{{$t('order.Detail.Courier')}} <b>* </b></label>
-                  <el-select id="sendExpresscode" class="select_list default form-control" v-model="orderAddrForm.sendExpresscode" :placeholder="$t('order.choose')" @change="remExpresscodeStyle">
+                  <el-select id="sendExpresscode" class="select_list default form-control" filterable v-model="orderAddrForm.sendExpresscode" :placeholder="$t('order.choose')" @change="remExpresscodeStyle">
                     <el-option
                       v-for="item in sendExpresscodeOptions"
                       :key="item.value"

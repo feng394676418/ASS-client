@@ -549,6 +549,8 @@ export default {
           this.$set(element, 'partCntTotalPrice', (this.checkReportForm.serviceType === '保内维修' ? element.price : element.outPrice ) * element.tmpPartNumber);
         });
         this.checkReportForm.orderPartList = tmpList;
+        this.checkReportForm.imei = this.checkReportForm.imei === '' ? this.baseInfo.imei : this.checkReportForm.imei;
+        this.checkReportForm.causeInfo = this.checkReportForm.causeInfo === '' ? this.baseInfo.troubleInfo : this.checkReportForm.causeInfo;
         //防止连续点击两次
         $('#btnSubmit').attr('disabled', 'true');
         setTimeout(() => {
@@ -566,19 +568,22 @@ export default {
         });
       },
       checkMoney(){
+        // 收件运费  客户寄给服务商
         if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.collectionCost)){
             this.checkReportForm.collectionCost= '';
-        }else if (this.checkReportForm.collectionCost.indexOf(".") >= 0){
+        }else if ((this.checkReportForm.collectionCost + '').indexOf(".") >= 0){
             this.checkReportForm.collectionCost = this.checkReportForm.collectionCost.substring(0,this.checkReportForm.collectionCost.indexOf(".") + 3); 
         }
+        // 服务费
         if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.repairCost)){
             this.checkReportForm.repairCost= '';
-        }else if (this.checkReportForm.repairCost.indexOf(".") >= 0){
+        }else if ((this.checkReportForm.repairCost + '').indexOf(".") >= 0){
             this.checkReportForm.repairCost = this.checkReportForm.repairCost.substring(0,this.checkReportForm.repairCost.indexOf(".") + 3); 
         }
+        // 寄件运费   服务商寄给客户
         if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.mailingCost)){
             this.checkReportForm.mailingCost= '';
-        }else if (this.checkReportForm.mailingCost.indexOf(".") >= 0){
+        }else if ((this.checkReportForm.mailingCost + '').indexOf(".") >= 0){
             this.checkReportForm.mailingCost = this.checkReportForm.mailingCost.substring(0,this.checkReportForm.mailingCost.indexOf(".") + 3); 
         }
       }

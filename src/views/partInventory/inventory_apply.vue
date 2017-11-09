@@ -188,7 +188,7 @@
 
       <div class="panel-body main_form_input" style="padding-bottom:15px;">
       <div class="col-md-6">
-          <el-select v-model="searchInfo.searchOwner" :placeholder="$t('order.selectowner')" @change="handlesearchByProviderCode" size="small" class="form-control">
+          <el-select v-model="searchInfo.searchOwner" :placeholder="$t('order.selectowner')" filterable @change="handlesearchByProviderCode" size="small" class="form-control">
                     <el-option
                       v-for="item in ownerCodeList"
                       :key="item"

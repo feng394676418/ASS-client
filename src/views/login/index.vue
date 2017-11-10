@@ -113,7 +113,7 @@
             if (valid) {
               this.loading = true;
               this.$store.dispatch('LoginByEmail', this.loginForm).then(() => {
-                this.loading = false;
+                this.loading = true;
                 this.$router.push({ path: '/' });
                 // this.showDialog = true;
               }).catch(err => {

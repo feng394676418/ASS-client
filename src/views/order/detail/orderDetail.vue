@@ -730,6 +730,7 @@ export default {
 					if(this.getAppLanguage()=='zh' && this.baseInfo.appearance != '' && this.baseInfo.appearance != null){
                 this.baseInfo.appearance = this.baseInfo.appearance.replace('Normal','外观完好').replace('Abnormal','外观破损');
           }
+					this.baseInfo.orderTime = this.baseInfo.orderTime == null ? '' : this.baseInfo.orderTime == '' ? '' : this.baseInfo.orderTime.substr(0,10)
 					this.$set(this.baseInfo, 'partsStatusArray', this.partsStatusArray);
         });
 

@@ -570,6 +570,9 @@ a:focus {
 
 .scroll-bar p {
     margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 140px;
 }
 
 .scroll-bar .description {

@@ -39,6 +39,9 @@ const messages = {
     zh: zh_CN
 }
 const assLang = Cookies.get('assLang') == null ? 'en' : Cookies.get('assLang');
+
+Cookies.set('assLang', assLang)
+
 const i18n = new VueI18n({
     locale: assLang,
     messages

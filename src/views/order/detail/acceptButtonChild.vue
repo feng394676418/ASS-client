@@ -73,7 +73,7 @@
                 <div>
                   <el-date-picker class="form-control"
                   v-model="acceptForm.orderTime"
-                  type="datetime"
+                  type="date"
                   :placeholder="baseInfo.orderTime">
                   </el-date-picker>
                 </div>

@@ -382,7 +382,7 @@
                     <!-- <template v-if="providerCode.substr(0,1) === 'B' && logInfoStatus === 13">
                       <confirmingButtonChild v-on:listenBaseInfo="refreshBaseInfo"></confirmingButtonChild>
                     </template> -->
-                    <!--维修 子组件 服务商显示-->
+                    <!--维修 子组件 服务商显示 reject 质检不通过-->
 									  <template v-if="providerCode.substr(0,1) === 'C' && ( logInfoStatus === 14 || ( logInfoStatus === 16 && logInfoRemark === 'reject' ) )">
 											<maintenanceButtonChild :baseInfo="baseInfo" v-on:listenBaseInfo="refreshBaseInfo"></maintenanceButtonChild>
 										</template>
@@ -730,6 +730,7 @@ export default {
 					if(this.getAppLanguage()=='zh' && this.baseInfo.appearance != '' && this.baseInfo.appearance != null){
                 this.baseInfo.appearance = this.baseInfo.appearance.replace('Normal','外观完好').replace('Abnormal','外观破损');
           }
+					this.baseInfo.orderTime = this.baseInfo.orderTime == null ? '' : this.baseInfo.orderTime == '' ? '' : this.baseInfo.orderTime.substr(0,10)
 					this.$set(this.baseInfo, 'partsStatusArray', this.partsStatusArray);
         });
 

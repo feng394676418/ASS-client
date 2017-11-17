@@ -64,7 +64,8 @@ export default {
             { name: 'Edit', status: 1 },
             { name: 'Acceptance', status: 12 },
             { name: 'Test', status: 13 },
-            { name: 'Confirm', status: 14 },
+            { name: 'Confirm', status: 14 }, // 同意报价
+            { name: 'Confirm', status: 140 }, // 拒绝报价
             { name: 'Repair', status: 15 },
             { name: 'QC', status: 16 },
             { name: 'Payment', status: 17 },

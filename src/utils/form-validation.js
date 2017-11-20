@@ -181,7 +181,40 @@ export default class V {
             }
         }
 
-        if (assLang == 'en') {
+        if (assLang === 'en') {
+            switch (ves[0]) {
+                case 'nonvoid':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + this._ERR_MSG_EN[ves]
+                    break
+                case 'reg':
+                    str = '[' + v.value.title + ']wrong format!'
+                    el._cddv.msg = str
+                    break
+                case 'limit':
+                    str = +el.value < v.value.format[0] ? '[' + v.value.title + ']should be greater than' + v.value.format[0] : '[' + v.value.title + ']should be less than' + v.value.format[1]
+                    el._cddv.msg = this._ERR_MSG_EN[ves] + str
+                    break
+                case 'equal':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + this._ERR_MSG_EN[ves]
+                    break
+                case 'unequal':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + this._ERR_MSG_EN[ves]
+                    break
+                case 'len':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + 'The length must be:' + v.value.format;
+                    break
+                case 'lessthan':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + 'the length must not be less than:' + v.value.format;
+                    break
+                default:
+                    el._cddv.msg = '[' + v.value.title + ']Verification does not pass'
+            }
+        } else {
             switch (ves[0]) {
                 case 'nonvoid':
                     str = '[' + v.value.title + ']'

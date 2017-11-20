@@ -398,6 +398,11 @@
                     <canculationButtonChild v-on:listenBaseInfo="refreshBaseInfo"></canculationButtonChild>
 										</template>
 
+										<!--拒绝报价 直接显示结算-->
+										<template v-if="logInfoStatus === 140">
+											<canculationButtonChild v-on:listenBaseInfo="refreshBaseInfo"></canculationButtonChild>
+										</template>
+
                     <!--发货 子组件 服务商-->
 										<template v-if="providerCode.substr(0,1) === 'C' && logInfoStatus === 17 || ( providerCode.substr(0,1) === 'C' && logInfoStatus === 16 && logInfoRemark !== 'reject' && baseInfo.checkServiceType === '保内维修' )">
                     <sendGoods :baseInfo="baseInfo" v-on:listenBaseInfo="refreshBaseInfo"></sendGoods>
@@ -764,7 +769,7 @@ export default {
                     }
                 } else if (towner.providerCode.substr(0, 1) === 'C') {
                     // 维修商
-										if (element.logStatus === 11 || element.logStatus === 1 || element.logStatus === 12 || element.logStatus === 14 ||
+										if (element.logStatus === 11 || element.logStatus === 1 || element.logStatus === 12 || element.logStatus === 14 || element.logStatus === 140 ||
 										element.logStatus === 15 || (element.logStatus === 16) || element.logStatus === 17 || element.logStatus === 18) {
                         // 受理按钮||检测按钮||维修按钮||质检按钮 ||维修按钮 有
                         // towner.$delete(element, 'className');

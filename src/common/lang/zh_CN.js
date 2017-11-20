@@ -64,7 +64,8 @@ export default {
             { name: '编辑工单', status: 1 },
             { name: '受理', status: 12 },
             { name: '检测', status: 13 },
-            { name: '确认报价', status: 14 },
+            { name: '确认报价', status: 14 }, // 同意报价
+            { name: '确认报价', status: 140 }, // 拒绝报价
             { name: '维修', status: 15 },
             { name: '质检', status: 16 },
             { name: '结算', status: 17 },

@@ -98,7 +98,7 @@
               <div class="clearfix"></div>
               <div class="form-group col-md-12">
               	<label for="">{{$t('order.address')}} <b>* </b></label>
-                <input class="form-control" id="addressDetail" alt="verifyForm" v-model="orderAddrForm.addressDetail" v-verify-input:lessthan ="{id:'addressDetail',format:3,title:$t('order.address')}" type="text" />
+                <input class="form-control" id="addressDetail" alt="verifyForm" v-model="orderAddrForm.addressDetail" v-verify-input:lenRange ="{id:'addressDetail',format:[3,500],title:$t('order.address')}" type="text" />
                 <div v-verify-msg:addressDetail></div>
               </div>
           </div>

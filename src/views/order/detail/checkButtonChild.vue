@@ -489,7 +489,6 @@ export default {
       querySearchAsync(queryString, cb) {
         const tmpPartlist = this.partlist;
         const results = queryString ? tmpPartlist.filter(this.createStateFilter(queryString)) : tmpPartlist;
-
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
           cb(results);
@@ -497,7 +496,7 @@ export default {
       },
       createStateFilter(queryString) {
         return state => {
-          return state.value.indexOf(queryString.toLowerCase()) > -1 || state.cnName.indexOf(queryString.toLowerCase()) > -1 || state.sku.indexOf(queryString.toLowerCase()) > -1;
+          return state.enName.toLowerCase().indexOf(queryString.toLowerCase()) > -1 || state.cnName.toLowerCase().indexOf(queryString.toLowerCase()) > -1 || state.sku.indexOf(queryString.toLowerCase()) > -1;
         };
       },
       handleSelect(item) {

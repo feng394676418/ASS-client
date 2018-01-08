@@ -31,7 +31,7 @@ const inventory_apply_details = _import('partInventory/detail/Inventory_apply_de
 const PartIndex = _import('part/index');
 const warehouse_index = _import('warehouse/index');
 const ModelInfoIndex = _import('model/index');
-const SetIndex = _import('set/index');  
+const SetIndex = _import('set/index');
 
 /* components */
 // const componentsIndex = _import('components/index');

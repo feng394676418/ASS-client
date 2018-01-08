@@ -20,6 +20,18 @@ export default class V {
                 reg(v, reg) {
                     return reg.test(v) ? 0 : ['reg']
                 },
+                phone(v, len) {
+                    // 先校验是否为空
+                    if (v.length == 0) {
+                        return ['nonvoid']
+                    }
+                    if(v.length > len){
+                        return v.length > len ? ['morethan'] : 0
+                    }
+                    let phoneReg = /^\s*\+?\s*(\(\s*\d+\s*\)|\d+)(\s*-?\s*(\(\s*\d+\s*\)|\s*\d+\s*))*\s*$/
+                    return phoneReg.test(v) ? 0 : ['reg']
+                    
+                },
                 // 区间
                 limit(v, interval) {
                     return +v >= interval[0] && +v <= interval[1] ? 0 : ['limit']
@@ -32,16 +44,37 @@ export default class V {
                 unequal(v, target) {
                     return v != target ? 0 : ['unequal']
                 },
+                //  长度登录
                 len(v, len) {
                     return v.length == len ? 0 : ['len']
                 },
-                // 小于
+                // 长度范围
+                lenRange(v, len) {
+                    console.dir(len)
+                    // 先校验是否为空
+                    if (v.length == 0) {
+                        return ['nonvoid']
+                    } else {
+                        console.dir(len[0]+"  "+ len[1])
+                        return v.length < len[0] || v.length > len[1] ? ['lenRange'] : 0
+                    }
+                },
+                // 长度小于
                 lessthan(v, len) {
                     // 先校验是否为空
                     if (v.length == 0) {
                         return ['nonvoid']
                     } else {
                         return v.length < len ? ['lessthan'] : 0
+                    }
+                },
+                // 长度大于
+                morethan(v, len) {
+                    // 先校验是否为空
+                    if (v.length == 0) {
+                        return ['nonvoid']
+                    } else {
+                        return v.length > len ? ['morethan'] : 0
                     }
                 }
             }
@@ -176,12 +209,18 @@ export default class V {
                     str = '[' + v.value.title + ']'
                     el._cddv.msg = str + '长度不能小于:' + v.value.format;
                     break
+                case 'morethan':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + '长度不能大于:' + v.value.format;
+                    break
+                case 'lenRange':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + '长度范围为:' + v.value.format[0]+"~"+v.value.format[1];
+                    break
                 default:
                     el._cddv.msg = '[' + v.value.title + ']验证不通过'
             }
-        }
-
-        if (assLang === 'en') {
+        }else if (assLang === 'en') {
             switch (ves[0]) {
                 case 'nonvoid':
                     str = '[' + v.value.title + ']'
@@ -210,6 +249,14 @@ export default class V {
                 case 'lessthan':
                     str = '[' + v.value.title + ']'
                     el._cddv.msg = str + 'the length must not be less than:' + v.value.format;
+                    break
+                case 'morethan':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + 'the length must not be more than:' + v.value.format;
+                    break
+                case 'lenRange':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + 'the length range must not be :' + v.value.format[0]+"~"+ v.value.format[1];
                     break
                 default:
                     el._cddv.msg = '[' + v.value.title + ']Verification does not pass'
@@ -243,6 +290,14 @@ export default class V {
                 case 'lessthan':
                     str = '[' + v.value.title + ']'
                     el._cddv.msg = str + 'the length must not be less than:' + v.value.format;
+                    break
+                case 'morethan':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + 'the length must not be more than:' + v.value.format;
+                    break
+                case 'lenRange':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + 'the length range must not be :' + v.value.format[0]+"~"+ v.value.format[1];
                     break
                 default:
                     el._cddv.msg = '[' + v.value.title + ']Verification does not pass'

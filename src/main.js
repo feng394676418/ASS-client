@@ -94,7 +94,7 @@ if (i18n.locale === 'zh') {
 }
 router.beforeEach((to, from, next) => {
     NProgress.start(); // 开启Progress
-    if (to.matched.length === 0 && from.fullPath !== '/') {
+    if (to.matched.length === 0 && from.fullPath !== '/' && to.fullPath !== '/') {
         next({ path: '/' });
         NProgress.done(); // 开启Progress
         return;

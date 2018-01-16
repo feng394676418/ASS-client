@@ -20,10 +20,10 @@ export function checkReportUpdate(checkReportForm) {
         causeInfo: checkReportForm.causeInfo,
         serviceType: checkReportForm.serviceType,
         repairLevel: checkReportForm.repairLevel.toString(),
-        collectionCost: checkReportForm.collectionCost,
-        partsCost: checkReportForm.partsCost,
-        mailingCost: checkReportForm.mailingCost,
-        repairCost: checkReportForm.repairCost,
+        collectionCost: checkReportForm.collectionCost, // 收件总价格
+        partsCost: checkReportForm.partsCost, // 配件总价格
+        mailingCost: checkReportForm.mailingCost, // 发件总价格
+        repairCost: checkReportForm.repairCost, // 维修总价格
         photoGrpurl: checkReportForm.photoGrpurl.toString(),
         createUser: checkReportForm.createUser,
         orderPartList: checkReportForm.orderPartList

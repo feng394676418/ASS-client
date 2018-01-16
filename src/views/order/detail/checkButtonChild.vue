@@ -244,7 +244,7 @@
 
 import { getPartInfoList, getPartInfoListByPO } from 'api/partManage';
 import { checkReportUpdate } from 'api/report';
-//import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 export default {
   name: 'checkButtonChild',
@@ -440,6 +440,7 @@ export default {
               partPriceSumTmp += Number.parseFloat(priceCountItem.outPrice) * Number.parseInt(priceCountItem.tmpPartNumber);
           }
         }
+        // TOOD VAT总价计算预留接口
         this.checkReportForm.partsCost = partPriceSumTmp;
         this.totalCost = Number.parseFloat(this.checkReportForm.partsCost) + Number.parseFloat(this.checkReportForm.collectionCost) + Number.parseFloat(this.checkReportForm.mailingCost) + Number.parseFloat(this.checkReportForm.repairCost);
       },
@@ -535,8 +536,6 @@ export default {
 
         // this.checkReportForm.orderPartList = this.orderPartTableData;
         // 局部属性调整
-       
-        
         const tmpList = this.orderPartTableData;
         tmpList.forEach(element => {
           this.$set(element, 'partCnt', element.tmpPartNumber);
@@ -545,12 +544,12 @@ export default {
           this.$set(element, 'providerCode', this.$store.getters.providerCode);
           this.$set(element, 'partEName', element.enName);
           this.$set(element, 'partCName', element.cnName);
-          this.$set(element, 'partCntTotalPrice', (this.checkReportForm.serviceType === '保内维修' ? element.price : element.outPrice ) * element.tmpPartNumber);
+          this.$set(element, 'partCntTotalPrice', (this.checkReportForm.serviceType === '保内维修' ? element.price : element.outPrice) * element.tmpPartNumber);
         });
         this.checkReportForm.orderPartList = tmpList;
         this.checkReportForm.imei = this.checkReportForm.imei === '' ? this.baseInfo.imei : this.checkReportForm.imei;
         this.checkReportForm.causeInfo = this.checkReportForm.causeInfo === '' ? this.baseInfo.troubleInfo : this.checkReportForm.causeInfo;
-        //防止连续点击两次
+        // 防止连续点击两次
         $('#btnSubmit').attr('disabled', 'true');
         setTimeout(() => {
             $('#btnSubmit').removeAttr('disabled');
@@ -580,9 +579,9 @@ export default {
             this.checkReportForm.repairCost = this.checkReportForm.repairCost.substring(0,this.checkReportForm.repairCost.indexOf(".") + 3); 
         }
         // 寄件运费   服务商寄给客户
-        if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.mailingCost)){
+        if (!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.mailingCost)){
             this.checkReportForm.mailingCost= '';
-        }else if ((this.checkReportForm.mailingCost + '').indexOf(".") >= 0){
+        } else if ((this.checkReportForm.mailingCost + '').indexOf(".") >= 0){
             this.checkReportForm.mailingCost = this.checkReportForm.mailingCost.substring(0,this.checkReportForm.mailingCost.indexOf(".") + 3); 
         }
       }

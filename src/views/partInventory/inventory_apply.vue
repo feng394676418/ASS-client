@@ -378,7 +378,11 @@ export default {
       // 货主list获取
       this.getOwnerOutterCodeList();
       this.searchBaseInfoList();
+      $('#nav10').next().children().find('li').eq(2).addClass('is-active');
   },
+	beforeDestroy() {
+		$('#nav10').next().children().find('li').eq(2).removeClass('is-active');
+	},
 beforeCreate() {
       const _this = this;
       Vue.filter('review', function(status) {

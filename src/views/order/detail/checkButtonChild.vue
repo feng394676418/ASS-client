@@ -198,7 +198,7 @@
                           <th width="25%"><label>{{$t('order.Detail.Inboundshippingcost')}}</label></th>
                           <th width="25%"><label>{{$t('order.Detail.Servicecost')}}</label></th>
                           <th width="25%"><label>{{$t('order.Detail.OutboundShippingCost')}}</label></th>
-                          <th width="25%"><label>{{$t('order.Detail.Totaloffer')}}</label></th>
+                          <th width="25%" style="text-align:right;"><label>{{$t('order.Detail.Totaloffer')}}</label></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -212,14 +212,18 @@
                           <td class="">
                              <input class="form-control" v-verify-input:reg="{id:'',format:'Money',title:''}" @blur="totalCostCalc()" id="" v-model="checkReportForm.mailingCost" placeholder="" @keyup="checkMoney()" type="text">
                           </td>
-                          <td class="">
-														<span class="text_yellow big_text">€ {{totalCost | money}}</span>
+                          <td class="" style="text-align:right;">
+														<span class="text_yellow">€ {{totalCost | money}}</span>
                           </td>
                         </tr>
                      </tbody>
                     </table>
                   </div>
           </div>
+          <div class="panel-body"> 
+							<p class="text-right">增值税23% <span class="text_yellow" style="margin-left:10px">€161</span></p>
+              <p  class="text-right">{{$t('order.Detail.Totaloffer')}} <span class="text_yellow big_text" style="margin-left:30px">€861</span></p>
+          </div>          
 
         </div>
         <div class="modal-footer">

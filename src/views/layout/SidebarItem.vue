@@ -2,12 +2,14 @@
     <div>
         <!--展开折叠开关-->
         <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-        <template v-for="item in routes">
+        <template v-for="(item, index) in routes">
+            <li :id="'nav'+index">
             <router-link v-if="!item.hidden&&item.noDropdown&&item.children.length>0" :to="item.path+'/'+item.children[0].path">
                 <el-menu-item :index="item.path+'/'+item.children[0].path">
                     <wscn-icon-svg v-if='item.icon' :icon-class="item.icon" /> {{item.children[0].name}}
                 </el-menu-item>
             </router-link>
+            </li>
             <el-submenu :index="item.name" v-if="!item.noDropdown&&!item.hidden">
                 <template slot="title">
                     <wscn-icon-svg v-if='item.icon' :icon-class="item.icon" /> {{item.name}}
@@ -16,6 +18,7 @@
                     <sidebar-item class='menu-indent' v-if='child.children&&child.children.length>0' :routes='[child]'> </sidebar-item>
                     <router-link v-else class="menu-indent" :to="item.path+'/'+child.path">
                         <el-menu-item :index="item.path+'/'+child.path">
+                            <wscn-icon-svg v-if='child.icon' :icon-class="child.icon" />
                             {{child.name}}
                         </el-menu-item>
                     </router-link>
@@ -90,4 +93,5 @@ export default {
     height: 60px;
     line-height: 60px;
 }
+/* .el-submenu .el-menu-item{height:50px;line-height:50px;padding:0 20px!important;} */
 </style>

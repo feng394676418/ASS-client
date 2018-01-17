@@ -654,6 +654,10 @@ export default {
 	},
 	created() {
 		this.fetchData();
+		$('#nav9').children().find('li').addClass('is-active');
+	},
+		beforeDestroy() {
+		$('#nav9').children().find('li').removeClass('is-active');
 	},
 	computed: {
 		...mapGetters([

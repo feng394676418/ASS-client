@@ -272,8 +272,12 @@ export default {
   },
 	created() {
 		this.searchLogInfoList();
-		this.getBaseInfo();
-	}
+		this.getBaseInfo();		
+		$('#nav10').next().children().find('li').eq(2).addClass('is-active');
+	},
+		beforeDestroy() {
+		$('#nav10').next().children().find('li').eq(2).removeClass('is-active');
+	},
 }
 </script>
 

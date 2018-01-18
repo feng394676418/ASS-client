@@ -24,6 +24,7 @@ export function checkReportUpdate(checkReportForm) {
         partsCost: checkReportForm.partsCost, // 配件总价格
         mailingCost: checkReportForm.mailingCost, // 发件总价格
         repairCost: checkReportForm.repairCost, // 维修总价格
+        valueAddTax: checkReportForm.valueAddTax, // 增值税总价格
         photoGrpurl: checkReportForm.photoGrpurl.toString(),
         createUser: checkReportForm.createUser,
         orderPartList: checkReportForm.orderPartList

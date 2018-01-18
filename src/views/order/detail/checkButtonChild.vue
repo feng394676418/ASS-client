@@ -256,7 +256,8 @@ export default {
       tmpPartNumber: 1, // 配件数量手动可调
       showPartName: '', // 配件名称
       partList: [],
-      totalCost: 0,
+      totalCost: 0, // 合计价格
+      totalValueAddTax: 0, // 合计增值税
       orderPartTableData: [], // 工单配件
       accessories: '', // 配件查询key
       assSelectPart: {},
@@ -293,6 +294,7 @@ export default {
         partsCost: 0,
         mailingCost: 0,
         repairCost: 0,
+        valueAddTax: 0, // 增值税 20180117 追加 dbsix.liu
         photoGrpurl: [], // 图片url
         updateUser: '',
         createUser: this.$store.getters.uid,
@@ -443,6 +445,9 @@ export default {
         // TOOD VAT总价计算预留接口
         this.checkReportForm.partsCost = partPriceSumTmp;
         this.totalCost = Number.parseFloat(this.checkReportForm.partsCost) + Number.parseFloat(this.checkReportForm.collectionCost) + Number.parseFloat(this.checkReportForm.mailingCost) + Number.parseFloat(this.checkReportForm.repairCost);
+        // 增值税计算 波兰税率暂时固定23% TODO
+        this.totalValueAddTax = thi.totalCost * 0.23;
+        this.checkReportForm.valueAddTax = this.totalValueAddTax; // 增值税持久化准备
       },
       // 删除特定配件
       partSelectDelete(item) {
@@ -554,6 +559,7 @@ export default {
         setTimeout(() => {
             $('#btnSubmit').removeAttr('disabled');
         }, 3000);
+
         checkReportUpdate(this.checkReportForm).then(response => {
             console.dir(response);
             if (response.data.status === '0') {
@@ -565,22 +571,22 @@ export default {
             }
         });
       },
-      checkMoney(){
+      checkMoney() {
         // 收件运费  客户寄给服务商
-        if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.collectionCost)){
-            this.checkReportForm.collectionCost= '';
-        }else if ((this.checkReportForm.collectionCost + '').indexOf(".") >= 0){
+        if (!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.collectionCost)) {
+            this.checkReportForm.collectionCost = '';
+        } else if ((this.checkReportForm.collectionCost + '').indexOf(".") >= 0) {
             this.checkReportForm.collectionCost = this.checkReportForm.collectionCost.substring(0,this.checkReportForm.collectionCost.indexOf(".") + 3); 
         }
         // 服务费
-        if(!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.repairCost)){
-            this.checkReportForm.repairCost= '';
-        }else if ((this.checkReportForm.repairCost + '').indexOf(".") >= 0){
-            this.checkReportForm.repairCost = this.checkReportForm.repairCost.substring(0,this.checkReportForm.repairCost.indexOf(".") + 3); 
+        if (!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.repairCost)) {
+            this.checkReportForm.repairCost = '';
+        } else if ((this.checkReportForm.repairCost + '').indexOf(".") >= 0) {
+            this.checkReportForm.repairCost = this.checkReportForm.repairCost.substring(0, this.checkReportForm.repairCost.indexOf(".") + 3); 
         }
         // 寄件运费   服务商寄给客户
-        if (!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.mailingCost)){
-            this.checkReportForm.mailingCost= '';
+        if (!/^([1-9]\d*|0|\d*(\.\d*))$/.test(this.checkReportForm.mailingCost)) {
+            this.checkReportForm.mailingCost = '';
         } else if ((this.checkReportForm.mailingCost + '').indexOf(".") >= 0){
             this.checkReportForm.mailingCost = this.checkReportForm.mailingCost.substring(0,this.checkReportForm.mailingCost.indexOf(".") + 3); 
         }

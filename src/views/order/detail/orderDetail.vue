@@ -493,9 +493,9 @@
 		            					
 		            				</div>
 		            				<div class="col-md-3  col-sm-6 col-xs-6">
-		            					{{$t('order.Detail.VAT')}} :<span class="text_yellow">€ 161</span><span></span><br/>
-													{{$t('order.Detail.Totaloffer')}} :<span class="text_yellow big_text" style="margin-left:32px">€ 861</span><span></span>
-		            				</div>	
+		            					{{$t('order.Detail.VAT')}} :<span class="text_yellow">€ {{ baseInfo.valueAddTax | money }}</span><span></span><br/>
+													{{$t('order.Detail.Totaloffer')}} :<span class="text_yellow big_text" style="margin-left:32px">€ {{baseInfo.collectionCost + baseInfo.mailingCost + baseInfo.repairCost + baseInfo.partsCost + baseInfo.valueAddTax | money}}</span><span></span>
+		            				</div>
 	            				<div class="clearfix"></div>
 	            				</div>
 											

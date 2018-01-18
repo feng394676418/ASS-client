@@ -83,6 +83,10 @@
                 <input class="form-control" v-model="baseInfo.color" id="" :placeholder="baseInfo.color" type="text">
               </div>
               <div class="form-group col-md-6">
+                <label for="">原始订单号</label>
+                <input class="form-control"  id=""  type="text">
+              </div>              
+              <div class="form-group col-md-6">
                 <label for="">{{$t('order.Appearance')}} </label>
                     <el-select class="select_list default form-control" v-model="baseInfo.appearance" filterable clearable :placeholder="baseInfo.appearance">
                       <el-option
@@ -97,7 +101,7 @@
 								<div class="clearfix"></div>		
               </div>
               
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-12">
                 <label for="">{{$t('order.Appearancedescription')}}</label>
                 <input class="form-control" v-model="baseInfo.appearanceInfo" id="" :placeholder="baseInfo.appearanceInfo" type="text">
               </div>               

@@ -175,6 +175,8 @@ export default {
             establishmentworkorder: 'created Work Order for customer, Work Order pending accepted.',
             workorderaccepted: 'Edited Work Order, Work Order pending accepted.',
             workordertested: 'Accepted Work Order, Work Order pending test.',
+            rejectquotesend: 'Rejected quotation, Work Order pending shipment.',
+            rejectquotecalc: 'Rejected quotation, Work Order pending payment.',
             Workorderconfirmed: 'tested Work Order, Work Order pending quotation.',
             workorderrepaired: 'Confirmed quotation, Work Order pending repair.',
             Workorderqualityinspection: 'Finished repair, Work Order pending QC.',

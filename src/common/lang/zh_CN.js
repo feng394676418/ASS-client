@@ -178,6 +178,8 @@ export default {
             Workorderconfirmed: '完成检测,工单待确认报价。',
             workorderrepaired: '确认报价,工单待维修。',
             Workorderqualityinspection: '完成维修,工单待质检。',
+            rejectquotesend: '拒绝报价,工单待发货',
+            rejectquotecalc: '拒绝报价,工单待结算',
             workordersettled: '完成质检,质检合格,工单待结算。',
             workorderdelivered: '完成质检,质检合格,工单待发货。',
             workordershipped: '完成结算,工单待发货。',

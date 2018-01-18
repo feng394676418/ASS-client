@@ -75,7 +75,7 @@
 	            <h2 class="title_shadow">{{$t('order.refNumber')}}{{baseInfo.refNumber}}
 	            <div class="pull-right">
 								<!--下载运单 子组件-->
-								<template v-if="logInfoStatus >= 18">
+								<template v-if="logInfoStatus >= 18 && logInfoStatus !== 140">
 											<downWaybillButtonChild :baseInfo = "baseInfo"></downWaybillButtonChild>
 								</template>
             		<a class="btn btn-warning" href="#/order/index">{{$t('BACK')}}</a>
@@ -349,6 +349,12 @@
 									<template v-if="logInfoStatus === 19">
 									{{$t('order.Detail.endworkorder')}}
 									</template>
+									<template v-if="logInfoStatus === 140 && baseInfo.checkServiceType === '保内维修'">
+									{{$t('order.Detail.rejectquotesend')}}
+									</template>
+									<template v-if="logInfoStatus === 140 && baseInfo.checkServiceType === '保外维修'">
+									{{$t('order.Detail.rejectquotecalc')}}
+									</template>
 									</p>
 	            		<div class="scroll-bar">
 	            			<div class="scroll-box">
@@ -493,9 +499,9 @@
 		            					
 		            				</div>
 		            				<div class="col-md-3  col-sm-6 col-xs-6">
-		            					{{$t('order.Detail.VAT')}} :<span class="text_yellow">€ 161</span><span></span><br/>
-													{{$t('order.Detail.Totaloffer')}} :<span class="text_yellow big_text" style="margin-left:32px">€ 861</span><span></span>
-		            				</div>	
+		            					{{$t('order.Detail.VAT')}} :<span class="text_yellow">€ {{ baseInfo.valueAddTax | money }}</span><span></span><br/>
+													{{$t('order.Detail.Totaloffer')}} :<span class="text_yellow big_text" style="margin-left:32px">€ {{baseInfo.collectionCost + baseInfo.mailingCost + baseInfo.repairCost + baseInfo.partsCost + baseInfo.valueAddTax | money}}</span><span></span>
+		            				</div>
 	            				<div class="clearfix"></div>
 	            				</div>
 											

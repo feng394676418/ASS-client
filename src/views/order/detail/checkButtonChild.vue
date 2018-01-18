@@ -221,8 +221,8 @@
                   </div>
           </div>
           <div class="panel-body"> 
-							<p class="text-right">{{$t('order.Detail.VAT')}} <span class="text_yellow" style="margin-left:10px">€161</span></p>
-              <p  class="text-right">{{$t('order.Detail.Totaloffer')}} <span class="text_yellow big_text" style="margin-left:30px">€861</span></p>
+							<p class="text-right">{{$t('order.Detail.VAT')}} <span class="text_yellow" style="margin-left:10px">€{{totalValueAddTax | money}}</span></p>
+              <p  class="text-right">{{$t('order.Detail.Totaloffer')}} <span class="text_yellow big_text" style="margin-left:30px">€{{totalCost + totalValueAddTax | money}}</span></p>
           </div>          
 
         </div>
@@ -450,7 +450,7 @@ export default {
         this.checkReportForm.partsCost = partPriceSumTmp;
         this.totalCost = Number.parseFloat(this.checkReportForm.partsCost) + Number.parseFloat(this.checkReportForm.collectionCost) + Number.parseFloat(this.checkReportForm.mailingCost) + Number.parseFloat(this.checkReportForm.repairCost);
         // 增值税计算 波兰税率暂时固定23% TODO
-        this.totalValueAddTax = thi.totalCost * 0.23;
+        this.totalValueAddTax = this.totalCost * 0.23;
         this.checkReportForm.valueAddTax = this.totalValueAddTax; // 增值税持久化准备
       },
       // 删除特定配件

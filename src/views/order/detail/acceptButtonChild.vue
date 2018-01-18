@@ -84,7 +84,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="">{{$t('order.Originalorderno')}}</label>
-                <input class="form-control"  id=""  type="text">
+                <input class="form-control"  id=""  type="text" readonly="true">
               </div>              
               <div class="form-group col-md-6">
                 <label for="">{{$t('order.Appearance')}} </label>

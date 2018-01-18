@@ -154,11 +154,11 @@ export const asyncRouterMap_ZH_CN = [{
         name: '备件管理',
         noDropdown: false,
         children: [
-            { path: 'provider/index', component: providerPartInventory, name: '备件库存' },
-            { path: 'provider/stockOrder', component: providerStockOrder, name: '备件出入库单' },
+            { path: 'provider/index', component: providerPartInventory, icon: 'i', name: '备件库存' },
+            { path: 'provider/stockOrder', component: providerStockOrder, icon: 's', name: '备件出入库单' },
             { path: 'provider/stockOrderDetail/:stockOrderNumber', component: providerStockOrderDetail, hidden: true, name: '备件出入库单明细' },
             { path: 'provider/change/index/:sku/:owner/:providerCode/:inventoryType/:inventoryTypeName', hidden: true, component: providerPartInventoryChange, name: '库存流水' },
-            { path: 'inventory_apply', component: inventory_apply, name: '申请备件', meta: { role: ['engineer'] } },
+            { path: 'inventory_apply', component: inventory_apply, icon: 'a', name: '申请备件', meta: { role: ['engineer'] } },
             { path: 'detail/:stockOrderNumber', component: inventory_apply_details, hidden: true, name: '申请备件', meta: { role: ['engineer'] } }
             // { path: 'badback', component: inventory_bad_back, name: '坏件返厂', meta: { role: ['engineer'] } }
         ]
@@ -171,9 +171,9 @@ export const asyncRouterMap_ZH_CN = [{
         name: '系统设置',
         icon: 'set',
         children: [
-            { path: 'index', component: PartIndex, name: '备件设置' },
-            { path: 'warehouseIndex', component: warehouse_index, name: '仓库管理' },
-            { path: 'set_index', component: SetIndex, name: '修改密码' }
+            { path: 'index', component: PartIndex, icon: 's', name: '备件设置' },
+            { path: 'warehouseIndex', component: warehouse_index, icon: 'w', name: '仓库管理' },
+            { path: 'set_index', icon: 'p', component: SetIndex, name: '修改密码' }
             // { path: 'model_index', component: ModelInfoIndex, name: '机型管理' } 三期启用
             // { path: 'tinymce', component: Tinymce, name: '备件库存' },
             // { path: 'markdown', component: Markdown, name: '备件出入库单' }

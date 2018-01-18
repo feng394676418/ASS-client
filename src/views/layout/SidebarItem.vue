@@ -59,8 +59,7 @@ export default {
 }
 
 .hideSidebar .menu-indent {
-    display: block;
-    text-indent: 10px;
+    display: block;    
 }
 </style>
 
@@ -93,5 +92,5 @@ export default {
     height: 60px;
     line-height: 60px;
 }
-/* .el-submenu .el-menu-item{height:50px;line-height:50px;padding:0 20px!important;} */
+.el-submenu .el-menu-item{height:50px;line-height:50px;padding:0 20px!important;}
 </style>

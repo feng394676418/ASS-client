@@ -153,11 +153,11 @@ export const asyncRouterMap_EN = [{
         icon: 'inventory',
         name: 'Parts',
         children: [
-            { path: 'provider/index', component: providerPartInventory, name: 'Inventory' },
-            { path: 'provider/stockOrder', component: providerStockOrder, name: 'Stock Orders' },
+            { path: 'provider/index', component: providerPartInventory, icon: 'i', name: 'Inventory' },
+            { path: 'provider/stockOrder', component: providerStockOrder, icon: 's', name: 'Stock Orders' },
             { path: 'provider/stockOrderDetail/:stockOrderNumber', component: providerStockOrderDetail, hidden: true, name: 'warehouse details' },
             { path: 'provider/change/index/:sku/:owner/:providerCode/:inventoryType/:inventoryTypeName', hidden: true, component: providerPartInventoryChange, name: 'Inventory water' },
-            { path: 'inventory_apply', component: inventory_apply, name: 'Apply parts', meta: { role: ['engineer'] } },
+            { path: 'inventory_apply', component: inventory_apply, icon: 'a', name: 'Apply parts', meta: { role: ['engineer'] } },
             { path: 'detail/:stockOrderNumber', component: inventory_apply_details, hidden: true, name: 'Apply parts', meta: { role: ['engineer'] } }
             // { path: 'badback', component: inventory_bad_back, name: 'Bad pieces', meta: { role: ['engineer'] } }
         ]
@@ -170,9 +170,9 @@ export const asyncRouterMap_EN = [{
         name: 'Setting',
         icon: 'set',
         children: [
-            { path: 'index', component: PartIndex, name: 'Spare parts' },
-            { path: 'warehouseIndex', component: warehouse_index, name: 'Warehouse' },
-            { path: 'set_index', component: SetIndex, name: 'Password' }
+            { path: 'index', component: PartIndex, icon: 's', name: 'Spare parts' },
+            { path: 'warehouseIndex', component: warehouse_index, icon: 'w', name: 'Warehouse' },
+            { path: 'set_index', component: SetIndex, icon: 'p', name: 'Password' }
             // { path: 'model_index', component: ModelInfoIndex, name: 'Model' } 三期启用
             // { path: 'index', component: PartIndex, name: '备件库存 ' },
             // { path: 'tinymce', component: Tinymce, name: '备件库存' },

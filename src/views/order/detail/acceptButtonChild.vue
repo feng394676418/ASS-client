@@ -83,7 +83,7 @@
                 <input class="form-control" v-model="baseInfo.color" id="" :placeholder="baseInfo.color" type="text">
               </div>
               <div class="form-group col-md-6">
-                <label for="">原始订单号</label>
+                <label for="">{{$t('order.Originalorderno')}}</label>
                 <input class="form-control"  id=""  type="text">
               </div>              
               <div class="form-group col-md-6">

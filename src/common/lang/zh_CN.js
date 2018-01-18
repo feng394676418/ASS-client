@@ -47,6 +47,7 @@ export default {
         Serviceprovidertel: '服务商联系电话',
         Cancel: '取 消',
         Affirm: '确 认',
+        Originalorderno: '原始订单号',
         statusItems: [
             { name: '全部', value: '0', status: '-1' },
             { name: '待受理', value: '0', status: '11' },
@@ -97,7 +98,7 @@ export default {
             Inboundshippingcost: '收件运费',
             OutboundShippingCost: '寄件运费',
             Servicecost: '服务费',
-            Total: '总计',
+            Total: '合计',
             QCreport: '产品质检',
             QCFail: '不合格',
             malfunction: '故障',
@@ -182,7 +183,8 @@ export default {
             workordershipped: '完成结算,工单待发货。',
             workorderreceived: '完成发货,工单待收货。',
             endworkorder: '货况显示已收货,工单完结。',
-            TransactionNoNOTNULL: '交易流水号不能为空!'
+            TransactionNoNOTNULL: '交易流水号不能为空!',
+            VAT: '增值税(23%)'
         },
         modalNotInput: '产品型号必须填写!',
         imeiNoNotInput: '产品IMEI必须填写!',

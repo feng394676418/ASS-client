@@ -481,6 +481,24 @@
 		            				</div>	
 	            				<div class="clearfix"></div>
 	            				</div>
+
+	            				<div class="grey_bg">		            			
+		            				<div class="col-md-3  col-sm-6 col-xs-6">
+		            					
+		            				</div>
+		            				<div class="col-md-3  col-sm-6 col-xs-6">
+		            					
+		            				</div>
+		            				<div class="col-md-3  col-sm-6 col-xs-6">
+		            					
+		            				</div>
+		            				<div class="col-md-3  col-sm-6 col-xs-6">
+		            					{{$t('order.Detail.VAT')}} :<span class="text_yellow">€ 161</span><span></span><br/>
+													{{$t('order.Detail.Totaloffer')}} :<span class="text_yellow big_text" style="margin-left:32px">€ 861</span><span></span>
+		            				</div>	
+	            				<div class="clearfix"></div>
+	            				</div>
+											
 	            				<div class="order_img col-md-12" id="layer-photos-demo">
 												<div v-for="addr in baseInfo.checkPhotoGrpurl.split(',')" :key="addr">
 	            					<a @click="handleView(addr)"><img :layer-src="addr" :src="addr" layer-index="0"></a>

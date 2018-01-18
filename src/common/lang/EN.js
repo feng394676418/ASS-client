@@ -47,6 +47,7 @@ export default {
         Serviceprovidertel: 'Service provider tel',
         Cancel: 'Cancel',
         Affirm: 'Affirm',
+        Originalorderno: 'Original order no.',
         statusItems: [
             { name: 'All', value: '0', status: '-1' },
             { name: 'Pending acceptance', value: '0', status: '11' },
@@ -182,7 +183,8 @@ export default {
             workordershipped: 'Confirmed payment, Work Order pending shipment.',
             workorderreceived: 'Confirmed shipment, Work Order pending received.',
             endworkorder: 'Shipment status shows as received, Work Order finished.',
-            TransactionNoNOTNULL: 'Transaction No. cannot be null!'
+            TransactionNoNOTNULL: 'Transaction No. cannot be null!',
+            VAT: 'VAT (23%)'
         },
         modalNotInput: 'The product modal must be set!',
         imeiNoNotInput: 'The IMEI NO. must be set!',

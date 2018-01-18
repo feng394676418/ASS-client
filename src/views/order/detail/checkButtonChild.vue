@@ -221,7 +221,7 @@
                   </div>
           </div>
           <div class="panel-body"> 
-							<p class="text-right">增值税23% <span class="text_yellow" style="margin-left:10px">€161</span></p>
+							<p class="text-right">{{$t('order.Detail.VAT')}} <span class="text_yellow" style="margin-left:10px">€161</span></p>
               <p  class="text-right">{{$t('order.Detail.Totaloffer')}} <span class="text_yellow big_text" style="margin-left:30px">€861</span></p>
           </div>          
 
